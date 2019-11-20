@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sop.WebApi</name>
+    </assembly>
+    <members>
+        <member name="T:Sop.WebApi.Data.Result`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TData"></typeparam>
+        </member>
+        <member name="M:Sop.WebApi.Data.Result`1.#ctor(Sop.WebApi.Data.ResultCode,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="resultCode"></param>
+            <param name="message"></param>
+        </member>
+        <member name="P:Sop.WebApi.Data.Result`1.Code">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sop.WebApi.Data.Result`1.Message">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sop.WebApi.Data.Result`1.Data">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Sop.WebApi.Data.ResultCode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Sop.WebApi.Data.ResultCode.Success">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Sop.WebApi.Data.ResultCode.Fail">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>
