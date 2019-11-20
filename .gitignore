@@ -9,11 +9,15 @@
 *.suo
 *.user
 *.sln.docstates
+*.sln.DotSettings.user
+Sop.sln.DotSettings.user
 
 # Build results
 
+
 .vs/
 .idea
+/src/.idea
 [Dd]ebug/
 [Rr]elease/
 x64/
