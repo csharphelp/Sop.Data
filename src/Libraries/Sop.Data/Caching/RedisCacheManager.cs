@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json;
-using StackExchange.Redis;
-using System;
+﻿using System;
 using System.Net;
 using System.Text;
+using Newtonsoft.Json;
+using StackExchange.Redis;
 
-namespace Sop.Core.Caching
+namespace Sop.Data.Caching
 {
     /// <summary>
     /// 使用Redis的缓存服务实现

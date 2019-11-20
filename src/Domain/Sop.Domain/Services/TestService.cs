@@ -12,8 +12,5 @@ namespace Sop.Domain.Services
         {
             var result = TestRepository.Create(info);
         }
-
-
-
     }
 }

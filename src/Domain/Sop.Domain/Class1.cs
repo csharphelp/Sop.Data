@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sop.Domain
+﻿namespace Sop.Domain
 {
     public class Class1
     {

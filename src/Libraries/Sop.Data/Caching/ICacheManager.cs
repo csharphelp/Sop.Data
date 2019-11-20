@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sop.Core.Caching
+namespace Sop.Data.Caching
 {
     /// <summary>
     /// 缓存管理接口

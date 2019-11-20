@@ -5,7 +5,6 @@ using Sop.Domain.Entities;
 namespace Sop.Domain.Mapping
 {
     /// <summary>
-    /// 
     /// </summary>
     public class TestsMapping : ClassMapping<Tests>
     {

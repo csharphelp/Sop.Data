@@ -1,31 +1,31 @@
 ﻿namespace Sop.Data.Test.Models
 {
     /// <summary>
-    /// 审核状态
+    ///     审核状态
     /// </summary>
     public enum TestType
     {
         /// <summary>
-        /// 未通过
+        ///     未通过
         /// </summary>
         Fail = 10,
 
         /// <summary>
-        /// 待审核
+        ///     待审核
         /// </summary>
         Pending = 20,
 
         /// <summary>
-        /// 需再次审核
+        ///     需再次审核
         /// </summary>
         Again = 30,
 
         /// <summary>
-        /// 通过验证
+        ///     通过验证
         /// </summary>
         Success = 40,
+
         /// <summary>
-        /// 
         /// </summary>
         AllFail = Fail | Pending | Again
     }
