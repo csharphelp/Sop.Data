@@ -14,10 +14,88 @@
             Gets or sets the entity identifier
             </summary>
         </member>
+        <member name="M:Sop.Data.BaseEntity.Equals(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sop.Data.BaseEntity.IsTransient(Sop.Data.BaseEntity)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sop.Data.BaseEntity.GetUnproxiedType">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Sop.Data.BaseEntity.Equals(Sop.Data.BaseEntity)">
+            <summary>
+            
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sop.Data.BaseEntity.GetHashCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Sop.Data.BaseEntity.op_Equality(Sop.Data.BaseEntity,Sop.Data.BaseEntity)">
+            <summary>
+            
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sop.Data.BaseEntity.op_Inequality(Sop.Data.BaseEntity,Sop.Data.BaseEntity)">
+            <summary>
+            
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
         <member name="T:Sop.Data.Caching.CacheExtensions">
             <summary>
             
             </summary>
+        </member>
+        <member name="M:Sop.Data.Caching.CacheExtensions.Get``1(Sop.Data.Caching.ICacheManager,System.String,System.Func{``0})">
+            <summary>
+            
+            </summary>
+            <param name="cacheManager"></param>
+            <param name="key"></param>
+            <param name="acquire"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Sop.Data.Caching.CacheExtensions.Get``1(Sop.Data.Caching.ICacheManager,System.String,System.Int32,System.Func{``0})">
+            <summary>
+            
+            </summary>
+            <param name="cacheManager"></param>
+            <param name="key"></param>
+            <param name="cacheTime"></param>
+            <param name="acquire"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Sop.Data.Caching.CacheExtensions.RemoveByPattern(Sop.Data.Caching.ICacheManager,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            
+            </summary>
+            <param name="cacheManager"></param>
+            <param name="pattern"></param>
+            <param name="keys"></param>
         </member>
         <member name="T:Sop.Data.Caching.ICacheManager">
             <summary>
