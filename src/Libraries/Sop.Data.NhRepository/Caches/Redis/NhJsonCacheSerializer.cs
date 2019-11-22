@@ -28,9 +28,9 @@ namespace Sop.Data.NhRepositories.Caches.Redis
       // should see them as null.
       private static readonly ISet<System.Type> NumberTypes = new HashSet<System.Type>(new[]
   {
-            typeof(Byte), typeof(SByte),
-            typeof(UInt16), typeof(UInt32), typeof(UInt64),
-            typeof(Int16), typeof(Int32), typeof(Int64),
+            typeof(byte), typeof(sbyte),
+            typeof(ushort), typeof(UInt32), typeof(UInt64),
+            typeof(short), typeof(Int32), typeof(Int64),
             typeof(Single), typeof(Double), typeof(Decimal)
         });
 
@@ -63,9 +63,14 @@ namespace Sop.Data.NhRepositories.Caches.Redis
         writer.WriteEndObject();
       }
     }
-
+/// <summary>
+/// 
+/// </summary>
     private class CustomContractResolver : DefaultContractResolver
     {
+        /// <summary>
+        /// 
+        /// </summary>
       private static readonly ISet<System.Type> nhibernateCacheObjectTypes = new HashSet<System.Type>(new[]
   {
             typeof(CachedItem),
