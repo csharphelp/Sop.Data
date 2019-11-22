@@ -1,40 +1,62 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Sop.Data.Test.Models;
-using Sop.Domain.Entities;
-using Sop.Domain.Services;
+using Sop.Domain.Domain.Services;
 using Sop.Web.Models;
 
 namespace Sop.Web.Controllers
 {
     public class HomeController : Controller
     {
-        public readonly ITestService TextService;
-        public HomeController(TestService textService)
+
+        private readonly IValuesService _valuesService;
+        private readonly IPostService _postService;
+        public HomeController(IValuesService valuesService, IPostService postService)
         {
-            TextService = textService;
+            this._valuesService = valuesService;
+            this._postService = postService;
         }
 
+        // GET api/values
+        [HttpGet]
+        public IEnumerable<string> Get()
+        {
+
+            var post = _postService.Find(1);
+
+
+            return this._valuesService.FindAll();
+        }
+
+        // GET api/values/5
+        [HttpGet("{id}")]
+        public string Get(int id)
+        {
+            return this._valuesService.Find(id);
+        }
         public IActionResult Index()
         {
 
-            var info = new Tests()
-            {
-                IsDel = true,
-                Body = "TEST",
-                DateCreated = DateTime.Now,
-                DecimalValue = 123.34M,
-                FloatValue = 123322.32f,
-                LongValue = 1467896543L,
-                Status = false,
-                Type = TestType.Again
-            };
+            var post = _postService.Find(1);
 
-            TextService.Create(info);
+
+
+
+
+
+            //var info = new Tests()
+            //{
+            //    IsDel = true,
+            //    Body = "TEST",
+            //    DateCreated = DateTime.Now,
+            //    DecimalValue = 123.34M,
+            //    FloatValue = 123322.32f,
+            //    LongValue = 1467896543L,
+            //    Status = false,
+            //    Type = TestType.Again
+            //};
+
+            //TextService.Create(info);
 
 
             return View();
