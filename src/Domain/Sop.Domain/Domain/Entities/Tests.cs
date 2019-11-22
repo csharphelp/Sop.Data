@@ -1,7 +1,6 @@
 ﻿using System;
-using Sop.Data.Test.Models;
 
-namespace Sop.Domain.Entities
+namespace Sop.Domain.Domain.Entities
 {
     /// <summary>
     ///     Sop_Test 测试数据实体类

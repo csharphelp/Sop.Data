@@ -1,8 +1,8 @@
 ﻿using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
-using Sop.Domain.Entities;
+using Sop.Domain.Domain.Entities;
 
-namespace Sop.Domain.Mapping
+namespace Sop.Domain.Domain.Mapping
 {
     /// <summary>
     /// </summary>

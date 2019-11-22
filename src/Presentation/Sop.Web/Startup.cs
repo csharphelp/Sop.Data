@@ -20,13 +20,20 @@ using StackExchange.Redis;
 
 namespace Sop.Web
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        public IConfiguration Configuration { get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="configuration"></param>
+        /// <param name="env"></param>
         public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -34,98 +41,36 @@ namespace Sop.Web
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 //.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
-            Configuration = builder.Build();
-            Configuration = configuration;
-        }
-        public IConfiguration Configuration { get; }
+            this.Configuration = builder.Build();
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        }
+
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to add services to the container.
+        /// </summary>
+        /// <param name="services"></param>
+        public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddControllersAsServices();
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            services = new ServiceCollection();
-            services.AddLogging();
-
-            #region   Autofac
-
-            var path = AppDomain.CurrentDomain.RelativeSearchPath ?? AppDomain.CurrentDomain.BaseDirectory;
-            var files = Directory.EnumerateFiles(path, "Sop.*.dll");
-            //files = files.Union(Directory.EnumerateFiles(path, "Sop.*.dll"));
-            //var assemblyList = files?.Select(n =>
-            //{
-
-            //    var name = AssemblyName.GetAssemblyName(n);
-            //    try
-            //    {
-            //        var assembly = Assembly.Load(name);
-            //        return assembly;
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        Console.WriteLine(e);
-            //    } 
-
-
-            //}).ToList();
-
-            //assemblyList.Add(Assembly.GetExecutingAssembly());
-            //assemblyList.AddRange(Assembly.GetExecutingAssembly().GetReferencedAssemblies().Select(Assembly.Load).ToList());
-            //var assemblies = assemblyList.ToArray();
-            //var types = assemblies
-            //   .SelectMany(a => a.DefinedTypes)
-            //   .Select(type => type.AsType())
-            //   .Where(t => t.Name.EndsWith("Service") || t.Name.Contains("CacheService") && t.IsClass).ToArray();
-
-            Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(n => n.FullName.StartsWith("Sop")).ToArray();
-
-            var builder = new ContainerBuilder();
-
-
-
-            builder.Register<Serilog.ILogger>((c, p) =>
-            {
-                return new LoggerConfiguration()
-                  .WriteTo.RollingFile(AppDomain.CurrentDomain.GetData("DataDirectory").ToString() + "/Log-{Date}.txt")
-                  .CreateLogger();
-            }).SingleInstance();
-            builder.RegisterType<LoggerFactory>().As<ILoggerFactory>().SingleInstance();
-            builder.RegisterGeneric(typeof(Logger<>)).As(typeof(ILogger<>)).SingleInstance();
-
-
-
-
-
-            builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).SingleInstance().PropertiesAutowired();
-
-            builder.RegisterAssemblyTypes(assemblies).Where(t => t.Name.EndsWith("Service") || t.Name.Contains("CacheService")).AsSelf()
-                .SingleInstance()
-                .AsImplementedInterfaces()
-                .InstancePerLifetimeScope()
-                .PropertiesAutowired(PropertyWiringOptions.AllowCircularDependencies);
-
-            builder.Register(c => ConnectionMultiplexer.Connect("123.56.198.152:6379,password=app2019,writeBuffer=10240,SyncTimeout=5000,AllowAdmin=true")).SingleInstance();
-            //注册NHibernate的SessionManager
-            builder.Register(c => new Sop.Data.NhRepositories.SessionManager(assemblies)).AsSelf().SingleInstance().PropertiesAutowired();
-
-
-
-            builder.Populate(services);
-            IContainer container = builder.Build();
-            DiContainer.RegisterContainer(container);
-
-
-            #endregion
-
-
-
-
-            return new AutofacServiceProvider(container);
+            //services = new ServiceCollection();
+            //services.AddLogging(); 
+        }
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            // Add any Autofac modules or registrations.
+            // This is called AFTER ConfigureServices so things you
+            // register here OVERRIDE things registered in ConfigureServices.
+            //
+            // You must have the call to AddAutofac in the Program.Main
+            // method or this won't be called.
+            builder.RegisterModule(new AutofacModules());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,4 +1,4 @@
-﻿namespace Sop.Data.Test.Models
+﻿namespace Sop.Domain.Domain.Entities
 {
     /// <summary>
     ///     审核状态

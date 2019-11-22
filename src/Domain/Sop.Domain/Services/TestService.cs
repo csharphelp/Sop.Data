@@ -1,5 +1,6 @@
 ﻿using Sop.Data;
-using Sop.Domain.Entities;
+using Sop.Domain.Domain.Entities;
+using Sop.Domain.Domain.Services;
 
 namespace Sop.Domain.Services
 {
@@ -8,6 +9,7 @@ namespace Sop.Domain.Services
     /// </summary>
     public class TestService : ITestService
     {
+
         /// <summary>
         /// 
         /// </summary>
