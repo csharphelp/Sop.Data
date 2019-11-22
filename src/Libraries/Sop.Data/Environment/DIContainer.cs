@@ -5,7 +5,7 @@ namespace Sop.Data.Environment
     /// <summary>
     /// 依赖注入容器
     /// </summary>
-    public class DiContainer
+    public static class DiContainer
     {
         private static IContainer _container;
 

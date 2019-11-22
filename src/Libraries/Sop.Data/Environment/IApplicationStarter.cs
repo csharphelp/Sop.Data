@@ -8,6 +8,11 @@ namespace Sop.Data.Environment
     /// </summary>
     public interface IApplicationStarter
     {
+        /// <summary>
+        /// ff
+        /// </summary>
+        /// <param name="container"></param>
+        /// <param name="assemblies"></param>
         void Start(IContainer container, Assembly[] assemblies);
     }
 }

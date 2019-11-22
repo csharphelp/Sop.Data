@@ -53,19 +53,18 @@ namespace Sop.Core.Utilities
 
             return result;
         }
-
-        /// <summary>
-        /// 格式化纯文本评论
-        /// </summary>
+      
+       /// <summary>
+       /// 格式化纯文本评论
+       /// </summary>
         /// <remarks>
         /// 进行以下操作：
         /// 1、敏感词过滤
         /// 2、所有链接增加nofollow属性
         /// 3、保留换行及空格的格式
         /// </remarks>
-        /// <param name="text">格式化的内容</param>
-        /// <param name="enableNoFollow">Should we include the nofollow rel.</param>
-        /// <param name="enableConversionToParagraphs">Should newlines be converted to P tags.</param>
+       /// <param name="text">格式化的内容</param>
+       /// <returns></returns>
         public static string FormatPlainTextComment(string text)
         {
             return FormatPlainTextComment(text, true, true);

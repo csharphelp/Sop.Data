@@ -17,8 +17,14 @@ namespace Sop.Data.Environment
         //private static readonly ILog logger = LogManager.GetLogger<ApplicationManager>();
 
         private static readonly string ApplicationsFolder = WebUtility.GetPhysicalFilePath("~/Applications/");
+        /// <summary>
+        /// 
+        /// </summary>
         private static readonly string DependenciesFolder = WebUtility.GetPhysicalFilePath("~/App_Data/Dependencies/");
 
+        /// <summary>
+        /// 
+        /// </summary>
         private static Dictionary<string, Application> allApplications;
 
         /// <summary>
@@ -243,16 +249,16 @@ namespace Sop.Data.Environment
         /// <param name="application"></param>
         private static bool LoadApplication(Application application)
         {
-            string assemblyPath = WebUtility.GetPhysicalFilePath(GetAssemblyPath(application.Id));
+            var assemblyPath = WebUtility.GetPhysicalFilePath(GetAssemblyPath(application.Id));
             if (!File.Exists(assemblyPath))
             {
                 return false;
             }
 
-            string dependenciesAssemblyPath = WebUtility.GetPhysicalFilePath(GetDependenciesAssemblyPath(application.Id));
+            var dependenciesAssemblyPath = WebUtility.GetPhysicalFilePath(GetDependenciesAssemblyPath(application.Id));
 
             // 如果Dependencies目录不存在该程序集，或程序集比Applications目录里的比较旧，则需要复制程序集
-            bool copyAssembly = !File.Exists(dependenciesAssemblyPath) || File.GetLastWriteTimeUtc(assemblyPath) > File.GetLastWriteTimeUtc(dependenciesAssemblyPath);
+            var copyAssembly = !File.Exists(dependenciesAssemblyPath) || File.GetLastWriteTimeUtc(assemblyPath) > File.GetLastWriteTimeUtc(dependenciesAssemblyPath);
 
             if (copyAssembly)
             {

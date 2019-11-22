@@ -11,7 +11,10 @@ namespace Sop.Core.Utilities
     /// </summary>
     public static class WebUtility
     {
-        public static readonly String HtmlNewLine = "<br />";
+        /// <summary>
+        /// 
+        /// </summary>
+        public static readonly string HtmlNewLine = "<br />";
 
         #region Url & Path
 

@@ -72,15 +72,25 @@ namespace Sop.Core.Miscellaneous
             return _mDictionary.ContainsKey(item);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="arrayIndex"></param>
         public void CopyTo(T[] array, int arrayIndex)
         {
             _mLinkedList.CopyTo(array, arrayIndex);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public bool Add(T item)
         {
             if (_mDictionary.ContainsKey(item)) return false;
-            LinkedListNode<T> node = _mLinkedList.AddLast(item);
+            var node = _mLinkedList.AddLast(item);
             _mDictionary.Add(item, node);
             return true;
         }

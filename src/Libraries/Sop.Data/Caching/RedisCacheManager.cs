@@ -7,16 +7,20 @@ using StackExchange.Redis;
 namespace Sop.Data.Caching
 {
     /// <summary>
-    /// 使用Redis的缓存服务实现
+    ///     使用Redis的缓存服务实现
     /// </summary>
-    public partial class RedisCacheManager : ICacheManager
+    public class RedisCacheManager : ICacheManager
     {
-        #region private
-        private static ConfigurationOptions _connection = null;
+    #region private
+
+        private static ConfigurationOptions _connection;
         private static volatile ConnectionMultiplexer _instance;
         private static readonly object Lock = new object();
         private static IDatabase _db;
 
+        /// <summary>
+        /// </summary>
+        /// <exception cref="Exception"></exception>
         public static ConnectionMultiplexer Instance
         {
             get
@@ -24,7 +28,6 @@ namespace Sop.Data.Caching
                 if (_instance != null && _instance.IsConnected)
                     return _instance;
                 lock (Lock)
-                {
                     try
                     {
                         if (_instance != null && _instance.IsConnected)
@@ -41,12 +44,13 @@ namespace Sop.Data.Caching
                         throw new Exception("Redis service is not started " + ex.Message);
                     }
 
-                }
                 return _instance;
             }
         }
 
-
+        /// <summary>
+        /// </summary>
+        /// <param name="cnnection"></param>
         public RedisCacheManager(ConfigurationOptions cnnection = null)
         {
             _connection = cnnection;
@@ -54,31 +58,42 @@ namespace Sop.Data.Caching
             _db = Instance.GetDatabase();
         }
 
-
+        /// <summary>
+        /// </summary>
+        /// <param name="endPoint"></param>
+        /// <returns></returns>
         public IServer Server(EndPoint endPoint)
         {
             return Instance.GetServer(endPoint);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <returns></returns>
         public EndPoint[] GetEndpoints()
         {
             return Instance.GetEndPoints();
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="db"></param>
         public void FlushDb(int? db = null)
         {
             var endPoints = GetEndpoints();
 
-            foreach (var endPoint in endPoints)
-            {
-                Server(endPoint).FlushDatabase(db ?? -1);
-            }
+            foreach (var endPoint in endPoints) Server(endPoint).FlushDatabase(db ?? -1);
         }
-        #endregion
 
-        #region Methods
+    #endregion
 
+    #region Methods
 
+        /// <summary>
+        /// </summary>
+        /// <param name="key"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         public virtual T Get<T>(string key)
         {
             if (_db != null)
@@ -86,13 +101,18 @@ namespace Sop.Data.Caching
                 var value = _db?.StringGetAsync(key);
                 var obj = Instance.Wait(value);
                 if (obj.IsNull)
-                    return default(T);
+                    return default;
                 return JsonConvert.DeserializeObject<T>(Encoding.UTF8.GetString(obj));
             }
-            return default(T);
+
+            return default;
         }
 
-
+        /// <summary>
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="data"></param>
+        /// <param name="cacheTime"></param>
         public virtual void Set(string key, object data, int cacheTime)
         {
             if (data == null)
@@ -105,6 +125,11 @@ namespace Sop.Data.Caching
             _db.StringSetAsync(key, entryBytes, expiresIn, flags: CommandFlags.FireAndForget);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <param name="timeSpan"></param>
         public void Set(string key, object value, TimeSpan timeSpan)
         {
             if (value == null)
@@ -114,18 +139,26 @@ namespace Sop.Data.Caching
             _db.StringSetAsync(key, entryBytes, timeSpan, flags: CommandFlags.FireAndForget);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public virtual bool IsSet(string key)
         {
             return _db.KeyExists(key);
         }
 
-
+        /// <summary>
+        /// </summary>
+        /// <param name="key"></param>
         public virtual void Remove(string key)
         {
             _db.KeyDeleteAsync(key, CommandFlags.FireAndForget);
         }
 
-
+        /// <summary>
+        /// </summary>
+        /// <param name="pattern"></param>
         public virtual void RemoveByPattern(string pattern)
         {
             foreach (var ep in GetEndpoints())
@@ -137,7 +170,8 @@ namespace Sop.Data.Caching
             }
         }
 
-
+        /// <summary>
+        /// </summary>
         public virtual void Clear()
         {
             foreach (var ep in GetEndpoints())
@@ -154,14 +188,12 @@ namespace Sop.Data.Caching
             }
         }
 
-
+        /// <summary>
+        /// </summary>
         public virtual void Dispose()
         {
-
         }
 
-
-        #endregion
-
+    #endregion
     }
 }

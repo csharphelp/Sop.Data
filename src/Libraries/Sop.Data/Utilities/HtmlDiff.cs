@@ -3,19 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using Sop.Core.Utilities;
 
-namespace Sop.Core.Utilities
+namespace Sop.Data.Utilities
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class HtmlDiff
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="oldText"></param>
+        /// <param name="newText"></param>
+        /// <returns></returns>
         public static string Execute(string oldText, string newText)
         {
             return new HtmlDiff(oldText, newText).Build();
         }
 
         private StringBuilder content;
-        private string oldText, newText;
-        private string[] oldWords, newWords;
+        private string oldText;
+        private readonly string newText;
+        private string[] oldWords, _newWords;
         private Dictionary<string, List<int>> wordIndices;
         private string[] specialCaseOpeningTags = new string[] { "<strong[\\>\\s]+", "<b[\\>\\s]+", "<i[\\>\\s]+", "<big[\\>\\s]+", "<small[\\>\\s]+", "<u[\\>\\s]+", "<sub[\\>\\s]+", "<sup[\\>\\s]+", "<strike[\\>\\s]+", "<s[\\>\\s]+" };
         private string[] specialCaseClosingTags = new string[] { "</strong>", "</b>", "</i>", "</big>", "</small>", "</u>", "</sub>", "</sup>", "</strike>", "</s>" };
@@ -56,9 +67,9 @@ namespace Sop.Core.Utilities
         private void IndexNewWords()
         {
             this.wordIndices = new Dictionary<string, List<int>>();
-            for (int i = 0; i < this.newWords.Length; i++)
+            for (int i = 0; i < this._newWords.Length; i++)
             {
-                string word = this.newWords[i];
+                string word = this._newWords[i];
 
                 // if word is a tag, we should ignore attributes as attribute changes are not supported (yet)
                 if (IsTag(word))
@@ -88,7 +99,7 @@ namespace Sop.Core.Utilities
         private void SplitInputsToWords()
         {
             this.oldWords = ConvertHtmlToListOfWords(Explode(this.oldText));
-            this.newWords = ConvertHtmlToListOfWords(Explode(this.newText));
+            this._newWords = ConvertHtmlToListOfWords(Explode(this.newText));
         }
 
         private string[] ConvertHtmlToListOfWords(string[] characterString)
@@ -237,7 +248,7 @@ namespace Sop.Core.Utilities
 
         private void ProcessInsertOperation(HtmlDiffOperation operation, string cssClass)
         {
-            this.InsertTag("ins", cssClass, this.newWords.Where((s, pos) => pos >= operation.StartInNew && pos < operation.EndInNew).ToList());
+            this.InsertTag("ins", cssClass, this._newWords.Where((s, pos) => pos >= operation.StartInNew && pos < operation.EndInNew).ToList());
         }
 
         private void ProcessDeleteOperation(HtmlDiffOperation operation, string cssClass)
@@ -248,7 +259,7 @@ namespace Sop.Core.Utilities
 
         private void ProcessEqualOperation(HtmlDiffOperation operation)
         {
-            var result = this.newWords.Where((s, pos) => pos >= operation.StartInNew && pos < operation.EndInNew).ToArray();
+            var result = this._newWords.Where((s, pos) => pos >= operation.StartInNew && pos < operation.EndInNew).ToArray();
             this.content.Append(String.Join("", result));
         }
 
@@ -365,7 +376,7 @@ namespace Sop.Core.Utilities
 
             var matches = this.MatchingBlocks();
 
-            matches.Add(new HtmlDiffMatch(this.oldWords.Length, this.newWords.Length, 0));
+            matches.Add(new HtmlDiffMatch(this.oldWords.Length, this._newWords.Length, 0));
 
             for (int i = 0; i < matches.Count; i++)
             {
@@ -426,7 +437,7 @@ namespace Sop.Core.Utilities
         private List<HtmlDiffMatch> MatchingBlocks()
         {
             List<HtmlDiffMatch> matchingBlocks = new List<HtmlDiffMatch>();
-            this.FindMatchingBlocks(0, this.oldWords.Length, 0, this.newWords.Length, matchingBlocks);
+            this.FindMatchingBlocks(0, this.oldWords.Length, 0, this._newWords.Length, matchingBlocks);
             return matchingBlocks;
         }
 
@@ -544,75 +555,5 @@ namespace Sop.Core.Utilities
         {
             return Regex.Split(value, @"");
         }
-    }
-
-    public class HtmlDiffMatch
-    {
-        public HtmlDiffMatch(int startInOld, int startInNew, int size)
-        {
-            this.StartInOld = startInOld;
-            this.StartInNew = startInNew;
-            this.Size = size;
-        }
-
-        public int StartInOld { get; set; }
-
-        public int StartInNew { get; set; }
-
-        public int Size { get; set; }
-
-        public int EndInOld
-        {
-            get
-            {
-                return this.StartInOld + this.Size;
-            }
-        }
-
-        public int EndInNew
-        {
-            get
-            {
-                return this.StartInNew + this.Size;
-            }
-        }
-    }
-
-    public class HtmlDiffOperation
-    {
-        public HtmlDiffAction Action { get; set; }
-
-        public int StartInOld { get; set; }
-
-        public int EndInOld { get; set; }
-
-        public int StartInNew { get; set; }
-
-        public int EndInNew { get; set; }
-
-        public HtmlDiffOperation(HtmlDiffAction action, int startInOld, int endInOld, int startInNew, int endInNew)
-        {
-            this.Action = action;
-            this.StartInOld = startInOld;
-            this.EndInOld = endInOld;
-            this.StartInNew = startInNew;
-            this.EndInNew = endInNew;
-        }
-    }
-
-    public enum HtmlDiffMode
-    {
-        character,
-        tag,
-        whitespace,
-    }
-
-    public enum HtmlDiffAction
-    {
-        equal,
-        delete,
-        insert,
-        none,
-        replace
     }
 }

@@ -1,13 +1,26 @@
-﻿namespace Sop.Core.Utilities
+﻿namespace Sop.Data.Utilities
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class FileUtility
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
         public static string GetFileExtension(string fileName)
         {
             string fileExtension = fileName.Substring(fileName.LastIndexOf(".") + 1);
             return fileExtension.ToLowerInvariant();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
         public static string GetFileNameWithoutExtension(string fileName)
         {
             string fileNameWithoutExtension = fileName.Substring(0, fileName.LastIndexOf("."));
@@ -23,13 +36,13 @@
             if (fileSize > 0)
             {
                 if (fileSize > 1024 * 1024 * 1024)
-                    return string.Format("{0:F2}GB", (fileSize / (1024 * 1024 * 1024F)));
+                    return $"{(fileSize / (1024 * 1024 * 1024F)):F2}GB";
                 else if (fileSize > 1024 * 1024)
-                    return string.Format("{0:F2}MB", (fileSize / (1024 * 1024F)));
+                    return $"{(fileSize / (1024 * 1024F)):F2}MB";
                 else if (fileSize > 1024)
-                    return string.Format("{0:F2}KB", (fileSize / (1024F)));
+                    return $"{(fileSize / (1024F)):F2}KB";
                 else
-                    return string.Format("{0:F2}B", fileSize);
+                    return $"{fileSize:F2}B";
             }
             else
                 return string.Empty;

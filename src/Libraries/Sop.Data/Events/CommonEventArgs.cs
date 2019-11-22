@@ -5,7 +5,7 @@ namespace Sop.Data.Events
     /// <summary>
     /// 通用事件参数
     /// </summary>
-    public class CommonEventArgs : EventArgs
+    public abstract class CommonEventArgs : EventArgs
     {
         /// <summary>
         /// 构造函数
