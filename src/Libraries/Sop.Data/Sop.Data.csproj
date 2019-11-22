@@ -11,7 +11,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningsAsErrors />
-    <DocumentationFile>E:\Git\csharphelp\sopcsharpboilerplate\src\Libraries\Sop.Data\Sop.Data.xml</DocumentationFile>
+    
   </PropertyGroup>
 
   <ItemGroup>
