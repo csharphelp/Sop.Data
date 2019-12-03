@@ -10,19 +10,38 @@ namespace Sop.WebApi.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        private readonly IValuesService _valuesService;
+
+        public ValuesController(IValuesService valuesService)
         {
-            return new string[] { "value1", "value2" };
+            this._valuesService = valuesService;
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        // GET api/values
+        [HttpGet]
+        public IEnumerable<string> Get()
         {
-            return "value";
+            return this._valuesService.FindAll();
         }
+
+//        // GET api/values/5
+//        [HttpGet("{id}")]
+//        public string Get(int id)
+//        {
+//            return this._valuesService.Find(id);
+//        }
+//        // GET api/values
+//        [HttpGet]
+//        public ActionResult<IEnumerable<string>> Get()
+//        {
+//            return new string[] { "value1", "value2" };
+//        }
+//        // GET api/values/5
+//        [HttpGet("{id}")]
+//        public ActionResult<string> Get(int id)
+//        {
+//            return "value";
+//        }
 
         // POST api/values
         [HttpPost]
