@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Autofac.Extensions.DependencyInjection;
 using Serilog;
 
 namespace Sop.Web
@@ -17,17 +10,16 @@ namespace Sop.Web
     {
         public static void Main(string[] args)
         {
-             
             var host = WebHost.CreateDefaultBuilder(args)
-                .ConfigureLogging(logging =>
-                {
-                    logging.ClearProviders();
-                    logging.AddConsole();
-                })
-                .ConfigureServices(services => services.AddAutofac())
-                .UseStartup<Startup>()
-                .UseSerilog()
-                .Build();
+                              .ConfigureLogging(logging =>
+                               {
+                                   logging.ClearProviders();
+                                   logging.AddConsole();
+                               })
+                              .ConfigureServices(services => services.AddAutofac())
+                              .UseStartup<Startup>()
+                              .UseSerilog()
+                              .Build();
 
 
             //using (var scope = host.Services.CreateScope())
@@ -45,10 +37,6 @@ namespace Sop.Web
             //}
 
             host.Run();
-
         }
-
-
-
     }
 }

@@ -8,40 +8,36 @@ namespace Sop.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IPostService _postService;
 
         private readonly IValuesService _valuesService;
-        private readonly IPostService _postService;
+
         public HomeController(IValuesService valuesService, IPostService postService)
         {
-            this._valuesService = valuesService;
-            this._postService = postService;
+            _valuesService = valuesService;
+            _postService = postService;
         }
 
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
         {
-
             var post = _postService.Find(1);
 
 
-            return this._valuesService.FindAll();
+            return _valuesService.FindAll();
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return this._valuesService.Find(id);
+            return _valuesService.Find(id);
         }
+
         public IActionResult Index()
         {
-
             var post = _postService.Find(1);
-
-
-
-
 
 
             //var info = new Tests()
@@ -70,7 +66,7 @@ namespace Sop.Web.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
         }
     }
 }

@@ -1,52 +1,37 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using Autofac;
-using Autofac.Extensions.DependencyInjection;
+﻿using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Serilog;
-using Sop.Data;
-using Sop.Data.Environment;
-using Sop.Data.NhRepositories;
-using StackExchange.Redis;
-
 
 namespace Sop.Web
 {
     /// <summary>
-    /// 
     /// </summary>
     public class Startup
     {
         /// <summary>
-        /// 
-        /// </summary>
-        public IConfiguration Configuration { get; }
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="configuration"></param>
         /// <param name="env"></param>
         public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                //.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
-            this.Configuration = builder.Build();
-
+                         .SetBasePath(env.ContentRootPath)
+                         .AddJsonFile("appsettings.json", true, true)
+                          //.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                         .AddEnvironmentVariables();
+            Configuration = builder.Build();
         }
 
         /// <summary>
-        /// This method gets called by the runtime. Use this method to add services to the container.
+        /// </summary>
+        public IConfiguration Configuration { get; }
+
+        /// <summary>
+        ///     This method gets called by the runtime. Use this method to add services to the container.
         /// </summary>
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
@@ -62,6 +47,7 @@ namespace Sop.Web
             //services = new ServiceCollection();
             //services.AddLogging(); 
         }
+
         public void ConfigureContainer(ContainerBuilder builder)
         {
             // Add any Autofac modules or registrations.
@@ -77,9 +63,7 @@ namespace Sop.Web
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
@@ -94,10 +78,9 @@ namespace Sop.Web
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    "default",
+                    "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
 }
-

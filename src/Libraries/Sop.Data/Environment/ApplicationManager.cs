@@ -25,7 +25,7 @@ namespace Sop.Data.Environment
         /// <summary>
         /// 
         /// </summary>
-        private static Dictionary<string, Application> allApplications;
+        private static Dictionary<string, Application> _allApplications;
 
         /// <summary>
         /// 扫描应用程序目录，加载所有的应用程序
@@ -117,7 +117,7 @@ namespace Sop.Data.Environment
         public static Application GetApplication(string applicationId)
         {
             Application application = null;
-            allApplications.TryGetValue(applicationId, out application);
+            _allApplications.TryGetValue(applicationId, out application);
 
             return application;
         }
@@ -140,7 +140,7 @@ namespace Sop.Data.Environment
         /// <returns></returns>
         public static IEnumerable<Application> GetAllWidgets()
         {
-            return allApplications.Values;
+            return _allApplications.Values;
         }
 
         /// <summary>

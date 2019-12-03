@@ -1,5 +1,3 @@
-using System;
-
 namespace Sop.Web.Models
 {
     public class ErrorViewModel
