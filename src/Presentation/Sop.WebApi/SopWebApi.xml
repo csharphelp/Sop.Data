@@ -4,21 +4,11 @@
         <name>Sop.WebApi</name>
     </assembly>
     <members>
-        <member name="T:Sop.WebApi.AutofacModule">
+        <member name="T:Sop.WebApi.ValuesController">
             <summary>
-            
+            Simple REST API controller that shows Autofac injecting dependencies.
             </summary>
-        </member>
-        <member name="M:Sop.WebApi.AutofacModule.Load(Autofac.ContainerBuilder)">
-            <summary>
-            
-            </summary>
-            <param name="builder"></param>
-        </member>
-        <member name="T:Sop.WebApi.IValuesService">
-            <summary>
-            
-            </summary>
+            <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
         </member>
         <member name="T:Sop.WebApi.Data.Result`1">
             <summary>
@@ -63,15 +53,27 @@
             
             </summary>
         </member>
-        <member name="T:Sop.WebApi.Startup">
+        <member name="T:Sop.WebApi.Services.IValuesService">
             <summary>
-                ///
-                <summary>
-                    ASP.NET Core docs for Autofac are here:https://autofac.readthedocs.io/en/latest/integration/aspnetcore.html
-                </summary>
+            
             </summary>
         </member>
-        <member name="T:Sop.WebApi.ValuesService">
+        <member name="T:Sop.WebApi.Services.ValuesService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Sop.WebApi.Startup">
+            <summary>
+               ASP.NET Core docs for Autofac are here:https://autofac.readthedocs.io/en/latest/integration/aspnetcore.html
+            </summary>
+        </member>
+        <member name="M:Sop.WebApi.Startup.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Sop.WebApi.Startup.Configuration">
             <summary>
             
             </summary>

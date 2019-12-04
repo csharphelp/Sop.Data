@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.271
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{11B1FC4C-EBA8-40AB-86FD-0133C98E2878}"
 EndProject
@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sop.Data", "Libraries\Sop.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sop.Data.NhRepositories", "Libraries\Sop.Data.NhRepository\Sop.Data.NhRepositories.csproj", "{B8776CE4-8E0C-4BA9-977E-869195717273}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sop.Domain", "Domain\Sop.Domain\Sop.Domain.csproj", "{42F3DB05-026A-4416-AC3C-B244C40F0714}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sop.Domain", "Domain\Sop.Domain\Sop.Domain.csproj", "{42F3DB05-026A-4416-AC3C-B244C40F0714}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{0B8BDF9A-3B0C-4273-965C-C4F8988B33AC}"
 EndProject
