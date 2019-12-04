@@ -7,7 +7,7 @@ namespace Sop.WebApi.Services
     /// 
     /// </summary>
 
-    public class ValuesService
+    public class ValuesService : IValuesService
     {
         private readonly ILogger<ValuesService> _logger;
 
@@ -21,7 +21,7 @@ namespace Sop.WebApi.Services
             this._logger.LogDebug("{method} called", nameof(this.FindAll));
 
             return new[] { "value1", "value2" };
-        }
+         }
 
         public string Find(int id)
         {
@@ -29,7 +29,7 @@ namespace Sop.WebApi.Services
 
             return $"value{id}";
         }
-       
-       
+
+
     }
 }
