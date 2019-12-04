@@ -9,10 +9,8 @@ namespace Sop.Data.Caching
     /// <summary>
     ///     使用Redis的缓存服务实现
     /// </summary>
-    public class RedisCacheManager : ICacheManager
+    public sealed class RedisCacheManager : ICacheManager
     {
-    #region private
-
         private static ConfigurationOptions _connection;
         private static volatile ConnectionMultiplexer _instance;
         private static readonly object Lock = new object();
@@ -85,16 +83,12 @@ namespace Sop.Data.Caching
             foreach (var endPoint in endPoints) Server(endPoint).FlushDatabase(db ?? -1);
         }
 
-    #endregion
-
-    #region Methods
-
         /// <summary>
         /// </summary>
         /// <param name="key"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public virtual T Get<T>(string key)
+        public T Get<T>(string key)
         {
             if (_db != null)
             {
@@ -113,7 +107,7 @@ namespace Sop.Data.Caching
         /// <param name="key"></param>
         /// <param name="data"></param>
         /// <param name="cacheTime"></param>
-        public virtual void Set(string key, object data, int cacheTime)
+        public void Set(string key, object data, int cacheTime)
         {
             if (data == null)
                 return;
@@ -143,7 +137,7 @@ namespace Sop.Data.Caching
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public virtual bool IsSet(string key)
+        public bool IsSet(string key)
         {
             return _db.KeyExists(key);
         }
@@ -151,7 +145,7 @@ namespace Sop.Data.Caching
         /// <summary>
         /// </summary>
         /// <param name="key"></param>
-        public virtual void Remove(string key)
+        public void Remove(string key)
         {
             _db.KeyDeleteAsync(key, CommandFlags.FireAndForget);
         }
@@ -159,7 +153,7 @@ namespace Sop.Data.Caching
         /// <summary>
         /// </summary>
         /// <param name="pattern"></param>
-        public virtual void RemoveByPattern(string pattern)
+        public void RemoveByPattern(string pattern)
         {
             foreach (var ep in GetEndpoints())
             {
@@ -172,7 +166,7 @@ namespace Sop.Data.Caching
 
         /// <summary>
         /// </summary>
-        public virtual void Clear()
+        public void Clear()
         {
             foreach (var ep in GetEndpoints())
             {
@@ -190,10 +184,8 @@ namespace Sop.Data.Caching
 
         /// <summary>
         /// </summary>
-        public virtual void Dispose()
+        public void Dispose()
         {
         }
-
-    #endregion
     }
 }

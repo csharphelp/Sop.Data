@@ -86,7 +86,7 @@
             
             </summary>
         </member>
-        <member name="T:Sop.WebApi.Services.IValuesService">
+        <member name="T:Sop.WebApi.Services.iValuesService">
             <summary>
             
             </summary>

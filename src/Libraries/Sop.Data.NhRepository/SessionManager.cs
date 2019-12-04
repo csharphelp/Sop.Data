@@ -57,7 +57,7 @@ namespace Sop.Data.NhRepositories
             configure.CurrentSessionContext<WebSessionContext>();
 
             //设置NHibernate使用Redis缓存
-            //https://github.com/TheCloudlessSky/NHibernate.Caches.Redis
+           
             var connectionMultiplexer = DiContainer.Resolve<ConnectionMultiplexer>();
             RedisCacheProvider.SetConnectionMultiplexer(connectionMultiplexer);
 

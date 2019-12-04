@@ -57,6 +57,7 @@ namespace Sop.WebApi
         ///     }
         ///
         /// </remarks>
+        /// 
         /// <param name="item"></param>
         /// <returns>A newly created TodoItem</returns>
         /// <response code="201">Returns the newly created item</response>
@@ -64,10 +65,11 @@ namespace Sop.WebApi
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult<Result<string>> Create(TodoItem item)
+        public ActionResult<Result<TodoItem>> Create(TodoItem item)
         {
 
-            var result = new Result<string>();
+            var result = new Result<TodoItem>();
+            result.Data = item;
 
             return result;
         }

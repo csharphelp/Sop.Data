@@ -19,5 +19,13 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Domain\Sop.Domain\Sop.Domain.csproj" />
+    <ProjectReference Include="..\..\Libraries\Sop.Core\Sop.Core.csproj" />
+    <ProjectReference Include="..\..\Libraries\Sop.Data.NhRepository\Sop.Data.NhRepositories.csproj" />
+    <ProjectReference Include="..\..\Libraries\Sop.Data\Sop.Data.csproj" />
+    <ProjectReference Include="..\Sop.WebFramework\Sop.WebFramework.csproj" />
+  </ItemGroup>
+
 </Project>
               
