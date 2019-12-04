@@ -15,9 +15,9 @@ namespace Sop.WebApi
     [Route("api/[controller]")]
     public class ValuesController : ControllerBase
     {
-        private readonly IValuesService _valuesService;
+        private readonly iValuesService _valuesService;
 
-        public ValuesController(IValuesService valuesService)
+        public ValuesController(iValuesService valuesService)
         {
             this._valuesService = valuesService;
         }

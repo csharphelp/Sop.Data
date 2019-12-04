@@ -13,7 +13,7 @@ namespace Sop.WebApi
             // with the `UseServiceProviderFactory(new AutofacServiceProviderFactory())` that happens in Program and registers Autofac
             // as the service provider.
             builder.Register(c => new ValuesService(c.Resolve<ILogger<ValuesService>>()))
-                .As<IValuesService>()
+                .As<iValuesService>()
                 .InstancePerLifetimeScope();
         }
     }

@@ -7,7 +7,7 @@ namespace Sop.WebApi.Services
     /// 
     /// </summary>
 
-    public class ValuesService : IValuesService
+    public class ValuesService : iValuesService
     {
         private readonly ILogger<ValuesService> _logger;
 
