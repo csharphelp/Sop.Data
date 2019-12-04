@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Sop.WebApi.Data
+﻿namespace Sop.WebApi.Data
 {
-    public class Class
-    {
-    }
     /// <summary>
     /// 
     /// </summary>
     /// <typeparam name="TData"></typeparam>
     public class Result<TData>
     {
-
+        public Result(ResultCode resultCode = ResultCode.Success)
+        {
+            Code = resultCode;
+            Message = "";
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -25,7 +21,7 @@ namespace Sop.WebApi.Data
             Code = resultCode;
             Message = message;
         }
-
+        public bool Status { get; set; } = true;
         /// <summary>
         /// 
         /// </summary>
@@ -39,20 +35,8 @@ namespace Sop.WebApi.Data
         /// 
         /// </summary>
         public TData Data { get; set; }
-    }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    public enum ResultCode
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        Success = 200,
-        /// <summary>
-        /// 
-        /// </summary>
-        Fail = 400
+
+
     }
 }
