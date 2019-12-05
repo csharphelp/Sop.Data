@@ -5,7 +5,7 @@ namespace Sop.WebApi.Services
     /// <summary>
     /// 
     /// </summary>
-    public interface iValuesService
+    public interface IValuesService
     {
         IEnumerable<string> FindAll();
 
