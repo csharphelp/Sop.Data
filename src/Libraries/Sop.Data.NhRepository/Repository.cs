@@ -12,12 +12,12 @@ namespace Sop.Data.NhRepositories
     /// <typeparam name="T">仓储对应的实体</typeparam>
     public class Repository<T> : IRepository<T> where T : class
     {
-        public SessionManager SessionManager { get; set; }
+        private AppSessionFactory AppSessionFactory { get; set; }
 
         /// <summary>
         /// ISession实例
         /// </summary>
-        public ISession Session => SessionManager.Session;
+        private ISession Session => AppSessionFactory.OpenSession;
 
         /// <summary>
         /// 根据Id查询实体

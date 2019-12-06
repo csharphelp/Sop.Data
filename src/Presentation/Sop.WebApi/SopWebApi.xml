@@ -109,13 +109,6 @@
             </summary>
             <param name="builder"></param>
         </member>
-        <member name="M:Sop.WebApi.AutofacModule.GetClassName(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="assemblyName"></param>
-            <returns></returns>
-        </member>
         <member name="T:Sop.WebApi.Startup">
             <summary>
                ASP.NET Core docs for Autofac are here:https://autofac.readthedocs.io/en/latest/integration/aspnetcore.html

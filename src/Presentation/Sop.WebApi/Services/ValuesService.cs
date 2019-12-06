@@ -14,7 +14,10 @@ namespace Sop.WebApi.Services
     public class ValuesService : IValuesService
     {
         private readonly ILogger<ValuesService> _logger;
-        public IRepository<Tests> _testRepository { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        private IRepository<Tests> _testRepository { get; set; }
 
         /// <summary>
         /// 

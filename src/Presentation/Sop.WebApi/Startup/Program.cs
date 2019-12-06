@@ -2,6 +2,8 @@
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Serilog;
+using Serilog.Events;
 
 namespace Sop.WebApi
 {
@@ -9,17 +11,19 @@ namespace Sop.WebApi
     {
         public static async Task Main(string[] args)
         {
-            // The `UseServiceProviderFactory(new AutofacServiceProviderFactory())` call here allows for
-            // ConfigureContainer to be supported in Startup with
-            // a strongly-typed ContainerBuilder. If you don't
-            // have the call to AddAutofac here, you won't get
-            // ConfigureContainer support. This also automatically
-            // calls Populate to put services you register during
-            // ConfigureServices into Autofac.
+            Log.Logger = new LoggerConfiguration()
+                        .MinimumLevel.Debug()
+                        .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+                        .Enrich.FromLogContext()
+                        .WriteTo.Console()
+                        .CreateLogger();
+
+
             var host = Host.CreateDefaultBuilder(args)
-                .UseServiceProviderFactory(new AutofacServiceProviderFactory())
-                .ConfigureWebHostDefaults(webHostBuilder => webHostBuilder.UseStartup<Startup>())
-                .Build();
+                           .UseServiceProviderFactory(new AutofacServiceProviderFactory())
+                           .ConfigureWebHostDefaults(webHostBuilder => webHostBuilder.UseStartup<Startup>())
+                           .UseSerilog()
+                           .Build();
 
             await host.RunAsync();
         }

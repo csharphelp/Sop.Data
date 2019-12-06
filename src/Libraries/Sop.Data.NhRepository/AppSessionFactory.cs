@@ -8,7 +8,8 @@ using NHibernate.Mapping.ByCode;
 using Sop.Data.Environment;
 using Sop.Data.NhRepositories.Caches.DynamicCacheBuster;
 using Sop.Data.NhRepositories.Caches.Redis;
-using StackExchange.Redis;
+ using Sop.Data.NhRepositories.Logging;
+ using StackExchange.Redis;
 using ISession = NHibernate.ISession;
 
 namespace Sop.Data.NhRepositories
@@ -16,19 +17,22 @@ namespace Sop.Data.NhRepositories
     /// <summary>
     /// Session和Transaction管理类，单例类。
     /// </summary>
-    public class SessionManager
+    public class AppSessionFactory
     { 
         /// <summary>
         /// SessionFactory
         /// </summary>
         private readonly ISessionFactory _sessionFactory;
-        private readonly ILogger _logger = DiContainer.Resolve<ILogger<SessionManager>>();    
+        private readonly ILogger _logger = DiContainer.Resolve<ILogger<AppSessionFactory>>();    
 
         /// <summary>
         /// 构造器
         /// </summary>
-        public SessionManager(Assembly[] assemblies)
+        public AppSessionFactory(Assembly[] assemblies)
         {
+            
+//            NHibernate.NHibernateLogger.SetLoggersFactory(new NHibernateToMicrosoftLoggerFactory());
+            
             //通过Mapping by code加载映射
             var mapper = new ModelMapper();
             foreach (var assembly in assemblies)
@@ -42,8 +46,7 @@ namespace Sop.Data.NhRepositories
                     //有些程序集里不包含NH配置信息，会抛异常，捕获但不处理
                 }
             }
-
-            //This will write all the XML into the bin/mappings folder
+ 
             if (HttpContext.Current == null)
             {
                 mapper.CompileMappingForEachExplicitlyAddedEntity().WriteAllXmlMapping();
@@ -56,20 +59,15 @@ namespace Sop.Data.NhRepositories
             configure.AddDeserializedMapping(hbmMapping, "");
             configure.CurrentSessionContext<WebSessionContext>();
 
-            //设置NHibernate使用Redis缓存
+            
            
             var connectionMultiplexer = DiContainer.Resolve<ConnectionMultiplexer>();
-            RedisCacheProvider.SetConnectionMultiplexer(connectionMultiplexer);
-
-            //设置Redis的序列化器
+            RedisCacheProvider.SetConnectionMultiplexer(connectionMultiplexer); 
             var options = new RedisCacheProviderOptions()
             {
                 Serializer = new NhJsonCacheSerializer()
             };
             RedisCacheProvider.SetOptions(options);
-
-            //设置NHibernate在表结构变化时自动更新缓存
-            //https://github.com/TheCloudlessSky/NHibernate.Cache.DynamicCacheBuster
             new CacheBuster().AppendVersionToCacheRegionNames(configure);
 
 
@@ -80,7 +78,7 @@ namespace Sop.Data.NhRepositories
         /// <summary>
         /// ISession实例
         /// </summary>
-        public ISession Session
+        public ISession OpenSession
         {
             get
             {
