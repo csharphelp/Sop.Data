@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using Autofac;
-using Microsoft.AspNetCore.Http.Features;
-using Microsoft.Extensions.Logging;
-using NHibernate;
-using NHibernate.Cfg;
 using Sop.Data;
 using Sop.Data.Caching;
 using Sop.Data.NhRepositories;
-using Sop.WebApi.Services;
 using StackExchange.Redis;
 using Module = Autofac.Module;
 
@@ -54,16 +48,16 @@ namespace Sop.WebApi
                    .PropertiesAutowired().InstancePerRequest();
 
          
-            services.AddSingleton<AppSessionFactory>();
-            builder.AddScoped(x => x.GetService<AppSessionFactory>().OpenSession);
-
+           
 
             //注册NHibernate的SessionManager
-            builder.Register(@delegate: c => new AppSessionFactory(assemblies)).InstancePerRequest().SingleInstance();   
+            builder.Register(@delegate: c => new AppSessionFactory(assemblies)).SingleInstance() .PropertiesAutowired(PropertyWiringOptions.AllowCircularDependencies|PropertyWiringOptions.PreserveSetValues);
+  
 
             //注册Repository
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>))
-                   .InstancePerLifetimeScope().InstancePerRequest();
+                   .SingleInstance().PropertiesAutowired(PropertyWiringOptions.AllowCircularDependencies|PropertyWiringOptions.PreserveSetValues);
+
             
             
             

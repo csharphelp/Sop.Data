@@ -41,7 +41,7 @@ namespace Sop.Data.NhRepositories
                 {
                     mapper.AddMappings(assembly.GetExportedTypes());
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     //有些程序集里不包含NH配置信息，会抛异常，捕获但不处理
                 }
@@ -151,7 +151,7 @@ namespace Sop.Data.NhRepositories
                     {
                         session.Transaction.Commit();
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         //_logger.Error("Error while committing the transaction.", e);
                         //_logger.LogError("Error while committing the transaction.", e);

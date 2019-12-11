@@ -7,7 +7,7 @@ namespace Sop.Data.NhRepository.Extensions.Options
         public static Configuration SetDbIntegration(this Configuration configure)
         {
             //获取netCore appsettings.json
-            var name = Configuration.DefaultHibernateCfgFileName;
+//            var name = Configuration.DefaultHibernateCfgFileName;
 
 
 

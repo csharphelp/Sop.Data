@@ -110,7 +110,7 @@ end
             /// 
             /// </summary>
             /// <returns></returns>
-            public string ToString()
+            public override string ToString()
             {
                 return "{ Key='" + Key + "', LockKey='" + LockKey + "', LockValue='" + LockValue + "' }";
             }

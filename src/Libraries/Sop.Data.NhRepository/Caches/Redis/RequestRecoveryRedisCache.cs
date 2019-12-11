@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Microsoft.AspNetCore.Http;
@@ -47,7 +46,7 @@ namespace Sop.Data.NhRepositories.Caches.Redis
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public object Get(object key)
+        public new object Get(object key)
         {
             if (HasFailedForThisHttpRequest())
                 return null;
@@ -58,7 +57,7 @@ namespace Sop.Data.NhRepositories.Caches.Redis
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        public void Put(object key, object value)
+        public new void Put(object key, object value)
         {
             if (HasFailedForThisHttpRequest())
                 return;
@@ -69,7 +68,7 @@ namespace Sop.Data.NhRepositories.Caches.Redis
         /// 
         /// </summary>
         /// <param name="key"></param>
-        public void Remove(object key)
+        public new void Remove(object key)
         {
             if (HasFailedForThisHttpRequest())
                 return;
@@ -78,7 +77,7 @@ namespace Sop.Data.NhRepositories.Caches.Redis
         /// <summary>
         /// 
         /// </summary>
-        public void Clear()
+        public new void Clear()
         {
             if (HasFailedForThisHttpRequest())
                 return;
@@ -87,7 +86,7 @@ namespace Sop.Data.NhRepositories.Caches.Redis
         /// <summary>
         /// 
         /// </summary>
-        public void Destroy()
+        public new void Destroy()
         {
             if (HasFailedForThisHttpRequest())
                 return;
@@ -97,32 +96,15 @@ namespace Sop.Data.NhRepositories.Caches.Redis
         /// 
         /// </summary>
         /// <param name="key"></param>
-        public void Lock(object key)
+        public new void Lock(object key)
         {
             base.Lock(key);
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="lockValue"></param>
-        public void Unlock(object key, object lockValue)
-        {
-            throw new NotImplementedException();
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="key"></param>
-        public void Unlock(object key)
-        {
-            base.Unlock(key);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public string RegionName { get; }
+        public new string RegionName { get; }
         /// <summary>
         /// 
         /// </summary>

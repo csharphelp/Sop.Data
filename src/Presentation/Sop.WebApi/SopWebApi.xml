@@ -97,6 +97,11 @@
             
             </summary>
         </member>
+        <member name="P:Sop.WebApi.Services.ValuesService._testRepository">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Sop.WebApi.Services.ValuesService.#ctor(Microsoft.Extensions.Logging.ILogger{Sop.WebApi.Services.ValuesService})">
             <summary>
             
