@@ -84,14 +84,9 @@ namespace Sop.WebApi
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseEndpoints(builder => builder.MapControllers());
-             
 
-            app.UseRouter(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "api/{controller=Values}/{action=Index}/{id?}");
-            });
+
+
 
         }
 
