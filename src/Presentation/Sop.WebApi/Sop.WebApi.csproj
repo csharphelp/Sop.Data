@@ -27,5 +27,7 @@
     <ProjectReference Include="..\Sop.WebFramework\Sop.WebFramework.csproj" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="http://json.schemastore.org/compilerconfig" /></VisualStudio></ProjectExtensions>
+
 </Project>
               

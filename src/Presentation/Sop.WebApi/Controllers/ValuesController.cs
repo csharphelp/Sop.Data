@@ -12,7 +12,7 @@ namespace Sop.WebApi
     /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
     [Produces("application/json")]
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     public class ValuesController : ControllerBase
     {
         private readonly iValuesService _valuesService;
@@ -21,6 +21,13 @@ namespace Sop.WebApi
         {
             this._valuesService = valuesService;
         }
+
+        [HttpGet]
+        public IEnumerable<string> Index()
+        {
+            return this._valuesService.FindAll();
+        }
+
 
         /// <summary>
         ///  GET api/values
