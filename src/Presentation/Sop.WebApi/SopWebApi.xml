@@ -87,7 +87,7 @@
             
             </summary>
         </member>
-        <member name="T:Sop.WebApi.Services.iValuesService">
+        <member name="T:Sop.WebApi.Services.IValuesService">
             <summary>
             
             </summary>
@@ -96,6 +96,18 @@
             <summary>
             
             </summary>
+        </member>
+        <member name="M:Sop.WebApi.Services.ValuesService.#ctor(Microsoft.Extensions.Logging.ILogger{Sop.WebApi.Services.ValuesService})">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+        </member>
+        <member name="M:Sop.WebApi.AutofacModule.Load(Autofac.ContainerBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="builder"></param>
         </member>
         <member name="T:Sop.WebApi.Startup">
             <summary>

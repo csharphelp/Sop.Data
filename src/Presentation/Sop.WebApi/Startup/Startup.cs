@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using Autofac;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Sop.Data.NhRepositories;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Sop.WebApi
@@ -107,10 +109,16 @@ namespace Sop.WebApi
             // collection. These will be automatically added to the
             // Autofac container.
             services.AddControllers();
+//
+//            var files = Directory.EnumerateFiles(AppDomain.CurrentDomain.BaseDirectory, "Sop.*.dll");
+//            files = files.Union(Directory.EnumerateFiles(AppDomain.CurrentDomain.BaseDirectory, "Sop.Common.*.dll"));
+//            var assemblies = files.Select(n => Assembly.Load(AssemblyName.GetAssemblyName(n))).ToArray();
+//
+//            
+//            services.AddSingleton<AppSessionFactory>();
+//            services.AddScoped(x => x.GetService<AppSessionFactory>().OpenSession);
 
-
-            services.AddControllers();
-
+           
            
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>

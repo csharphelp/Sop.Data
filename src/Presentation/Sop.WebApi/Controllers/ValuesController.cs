@@ -15,9 +15,10 @@ namespace Sop.WebApi
     [Route("api/[controller]")]
     public class ValuesController : ControllerBase
     {
-        private readonly iValuesService _valuesService;
+//        private IValuesService _valuesService { get; set; }
+        private readonly IValuesService _valuesService;
 
-        public ValuesController(iValuesService valuesService)
+        public ValuesController(IValuesService valuesService)
         {
             this._valuesService = valuesService;
         }
@@ -67,7 +68,6 @@ namespace Sop.WebApi
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<Result<TodoItem>> Create(TodoItem item)
         {
-
             var result = new Result<TodoItem>();
             result.Data = item;
 
