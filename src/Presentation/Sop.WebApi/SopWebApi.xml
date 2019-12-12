@@ -4,6 +4,12 @@
         <name>Sop.WebApi</name>
     </assembly>
     <members>
+        <member name="M:Sop.WebApi.AppModule.Load(Autofac.ContainerBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="builder"></param>
+        </member>
         <member name="T:Sop.WebApi.ValuesController">
             <summary>
             Simple REST API controller that shows Autofac injecting dependencies.
@@ -87,6 +93,18 @@
             
             </summary>
         </member>
+        <member name="T:Sop.WebApi.Program">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Sop.WebApi.Program.Main(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
         <member name="T:Sop.WebApi.Services.IValuesService">
             <summary>
             
@@ -107,12 +125,6 @@
             
             </summary>
             <param name="logger"></param>
-        </member>
-        <member name="M:Sop.WebApi.AutofacModule.Load(Autofac.ContainerBuilder)">
-            <summary>
-            
-            </summary>
-            <param name="builder"></param>
         </member>
         <member name="T:Sop.WebApi.Startup">
             <summary>

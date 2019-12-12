@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 using Sop.Data;
-using Sop.Data.NhRepositories;
 using Sop.Domain.Domain.Entities;
 
 namespace Sop.WebApi.Services

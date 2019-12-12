@@ -7,8 +7,16 @@ using Serilog.Events;
 
 namespace Sop.WebApi
 {
-    public class Program
+    /// <summary>
+    /// 
+    /// </summary>
+    public static class Program
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
         public static async Task Main(string[] args)
         {
             Log.Logger = new LoggerConfiguration()

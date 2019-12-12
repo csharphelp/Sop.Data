@@ -94,7 +94,7 @@ namespace Sop.WebApi
             //
             // You must have the call to `UseServiceProviderFactory(new AutofacServiceProviderFactory())`
             // when building the host or this won't be called.
-            builder.RegisterModule(new AutofacModule());
+            builder.RegisterModule(new AppModule());
         }
 
         public void ConfigureServices(IServiceCollection services)

@@ -21,7 +21,7 @@ namespace Sop.Data.Serilog.Extensions.Autofac.DependencyInjection
         /// <param name="outputTemplate"></param>
         /// <returns></returns>
         public static ContainerBuilder RegisterSerilog(this ContainerBuilder builder, string logPath,
-            LogEventLevel logEventLevel = LogEventLevel.Debug, string outputTemplate = Constants.DEFAULT_LOG_TEMPLATE)
+            LogEventLevel logEventLevel = LogEventLevel.Debug, string outputTemplate = Constants.DefaultLogTemplate)
         {
             if (string.IsNullOrWhiteSpace(logPath))
                 throw new ArgumentNullException(nameof(logPath));

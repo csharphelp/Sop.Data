@@ -11,7 +11,8 @@ using Module = Autofac.Module;
 
 namespace Sop.WebApi
 {
-    public class AutofacModule : Module
+
+    public class AppModule : Module
     {
         /// <summary>
         /// 
@@ -47,9 +48,6 @@ namespace Sop.WebApi
             builder.Register(c => new RedisCacheManager(option)).As<ICacheManager>().SingleInstance()
                    .PropertiesAutowired().InstancePerRequest();
 
-         
-           
-
             //注册NHibernate的SessionManager
             builder.Register(@delegate: c => new AppSessionFactory(assemblies)).SingleInstance() .PropertiesAutowired(PropertyWiringOptions.AllowCircularDependencies|PropertyWiringOptions.PreserveSetValues);
   
@@ -57,50 +55,7 @@ namespace Sop.WebApi
             //注册Repository
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>))
                    .SingleInstance().PropertiesAutowired(PropertyWiringOptions.AllowCircularDependencies|PropertyWiringOptions.PreserveSetValues);
-
-            
-            
-            
-            
-            //注册缓存服务，每次请求都是一个新的实例
-//            builder.Register(c => new MemoryCacheManager()).As<ICacheManager>().SingleInstance().PropertiesAutowired();
-
-
-
-//            builder.RegisterModule(new FlexibleInterceptionModule());
-//            
-//            builder.Register<TransactionInterceptor>().ContainerScoped();
-//
-//            //NHibernate - ISessionFactory  (Using Fluent.NHibernate)
-//            
-//            builder.Register(x => Fluently.Configure()
-//                                          .Database(MsSqlConfiguration.MsSql2005
-//                                                                      .ConnectionString(c => c.FromConnectionStringWithKey
-//                                                                                            ("ConnectionString")))
-//                                          .Mappings(m =>
-//                                                        m.FluentMappings.AddFromAssemblyOf<MyAutofacModule>())
-//                                          .BuildSessionFactory())
-//                   .SingletonScoped();
-
-            //NHibernate - ISession
-//            builder.Register(c => c.Resolve<ISessionFactory>().OpenSession
-//                                 ()).ContainerScoped();
-
-            //Services
-//            builder.Register<MyServiceClass>().ContainerScoped().InterceptedBy
-//                (typeof(TransactionInterceptor));
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
         }

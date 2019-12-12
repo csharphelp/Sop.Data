@@ -12,7 +12,7 @@ namespace Sop.Data.Serilog.Extensions.Autofac.DependencyInjection
         /// <summary>
         /// 
         /// </summary>
-        public const string DEFAULT_LOG_TEMPLATE
+        public const string DefaultLogTemplate
             = "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}";
         /// <summary>
         /// 
