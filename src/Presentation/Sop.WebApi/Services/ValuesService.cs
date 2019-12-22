@@ -30,7 +30,7 @@ namespace Sop.WebApi.Services
 
         public IEnumerable<string> FindAll()
         {
-            _testRepository.Create(new Tests
+            _testRepository.Insert(new Tests
             {
                
                 Type = TestType.Again,

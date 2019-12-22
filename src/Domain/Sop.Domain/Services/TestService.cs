@@ -21,7 +21,7 @@ namespace Sop.Domain.Services
 /// <param name="info"></param>
         public void Create(Tests info)
         {
-            var result = TestRepository.Create(info);
+            //var result = TestRepository.Create(info);
         }
     }
 }

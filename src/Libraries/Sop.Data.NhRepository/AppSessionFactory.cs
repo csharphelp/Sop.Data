@@ -1,15 +1,14 @@
-﻿ using System;
+﻿using System;
 using System.Reflection;
 using Microsoft.Extensions.Logging;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Context;
 using NHibernate.Mapping.ByCode;
-using Sop.Data.Environment;
+using Sop.Data.Container;
 using Sop.Data.NhRepositories.Caches.DynamicCacheBuster;
 using Sop.Data.NhRepositories.Caches.Redis;
- using Sop.Data.NhRepositories.Logging;
- using StackExchange.Redis;
+using StackExchange.Redis;
 using ISession = NHibernate.ISession;
 
 namespace Sop.Data.NhRepositories
@@ -23,7 +22,7 @@ namespace Sop.Data.NhRepositories
         /// SessionFactory
         /// </summary>
         private readonly ISessionFactory _sessionFactory;
-        private readonly ILogger _logger = DiContainer.Resolve<ILogger<AppSessionFactory>>();    
+ 
 
         /// <summary>
         /// 构造器

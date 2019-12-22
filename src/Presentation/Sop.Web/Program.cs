@@ -1,8 +1,12 @@
-﻿using Autofac.Extensions.DependencyInjection;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Serilog;
 
 namespace Sop.Web
 {
@@ -10,33 +14,11 @@ namespace Sop.Web
     {
         public static void Main(string[] args)
         {
-            var host = WebHost.CreateDefaultBuilder(args)
-                              .ConfigureLogging(logging =>
-                               {
-                                   logging.ClearProviders();
-                                   logging.AddConsole();
-                               })
-                              .ConfigureServices(services => services.AddAutofac())
-                              .UseStartup<Startup>()
-                              .UseSerilog()
-                              .Build();
-
-
-            //using (var scope = host.Services.CreateScope())
-            //{
-            //    var services = scope.ServiceProvider;
-            //    var logger = services.GetRequiredService<ILogger<Program>>();
-            //    try
-            //    {
-            //        logger.LogInformation("Seeding API database");
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        logger.LogError("Error creating/seeding API database - " + ex);
-            //    }
-            //}
-
-            host.Run();
+            CreateWebHostBuilder(args).Build().Run();
         }
+
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>();
     }
 }

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using Autofac;
 using Sop.Data;
-using Sop.Data.Caching;
 using Sop.Data.NhRepositories;
 using StackExchange.Redis;
 using Module = Autofac.Module;
@@ -45,8 +44,8 @@ namespace Sop.WebApi
             var option = ConfigurationOptions.Parse(redis);
             builder.Register(c => ConnectionMultiplexer.Connect(option)).SingleInstance().PropertiesAutowired();
 
-            builder.Register(c => new RedisCacheManager(option)).As<ICacheManager>().SingleInstance()
-                   .PropertiesAutowired().InstancePerRequest();
+            //builder.Register(c => new RedisCacheManager(option)).As<ICacheManager>().SingleInstance()
+            //       .PropertiesAutowired().InstancePerRequest();
 
             //注册NHibernate的SessionManager
             builder.Register(@delegate: c => new AppSessionFactory(assemblies)).SingleInstance() .PropertiesAutowired(PropertyWiringOptions.AllowCircularDependencies|PropertyWiringOptions.PreserveSetValues);

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.IO;
 using Autofac;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -103,17 +101,21 @@ namespace Sop.WebApi
             // collection. These will be automatically added to the
             // Autofac container.
             services.AddControllers();
-//
-//            var files = Directory.EnumerateFiles(AppDomain.CurrentDomain.BaseDirectory, "Sop.*.dll");
-//            files = files.Union(Directory.EnumerateFiles(AppDomain.CurrentDomain.BaseDirectory, "Sop.Common.*.dll"));
-//            var assemblies = files.Select(n => Assembly.Load(AssemblyName.GetAssemblyName(n))).ToArray();
-//
-//            
-//            services.AddSingleton<AppSessionFactory>();
-//            services.AddScoped(x => x.GetService<AppSessionFactory>().OpenSession);
+            services.AddSopData(opt =>
+            {
+                opt.UseMySql("server =127.0.0.1;database=soptestdb;uid=root;password=123456;");
+            });
+            //
+            //            var files = Directory.EnumerateFiles(AppDomain.CurrentDomain.BaseDirectory, "Sop.*.dll");
+            //            files = files.Union(Directory.EnumerateFiles(AppDomain.CurrentDomain.BaseDirectory, "Sop.Common.*.dll"));
+            //            var assemblies = files.Select(n => Assembly.Load(AssemblyName.GetAssemblyName(n))).ToArray();
+            //
+            //            
+            //            services.AddSingleton<AppSessionFactory>();
+            //            services.AddScoped(x => x.GetService<AppSessionFactory>().OpenSession);
 
-           
-           
+
+
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {

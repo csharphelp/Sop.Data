@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Sop.WebApi.Data;
 using Sop.WebApi.Services;
 
-namespace Sop.WebApi
+namespace Sop.WebApi.Controllers
 {
     /// <summary>
     /// Simple REST API controller that shows Autofac injecting dependencies.

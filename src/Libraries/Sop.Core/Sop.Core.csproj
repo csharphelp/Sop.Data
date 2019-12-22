@@ -1,23 +1,84 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net461;</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Version>0.5.0</Version>
+    <Authors>sopcce@hotmail.com;</Authors>
+    <Copyright>Copyright 2019 sopcce.com</Copyright>
+    <PackageId>Sop.Core</PackageId>
+    <Description>Sop.Core
+基本工具类操作，
+</Description>
+    <PackageTags>Autofac;NetCore</PackageTags>
+    <PackageProjectUrl>https://github.com/Sopcce</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/Sopcce/.Net-Common-Utility/master/favicon.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/Sopcce</RepositoryUrl>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PackageLicenseUrl>https://github.com/Sopcce</PackageLicenseUrl>
+    <RepositoryType>MIT</RepositoryType>
+    <PackageReleaseNotes>Autofac;NetCore</PackageReleaseNotes>
+    <NeutralLanguage>en</NeutralLanguage>
+    <AssemblyVersion>0.5.0.0</AssemblyVersion>
+    <FileVersion>0.5.0.3</FileVersion>
+    <Company>sopcce@hotmail.com;</Company>
+    <Product>Sop</Product>
   </PropertyGroup>
 
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net451' ">
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+  </ItemGroup>
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <Compile Remove="Encryption\**" />
+    <Compile Remove="Environment\**" />
+    <Compile Remove="Events\**" />
+    <Compile Remove="Extensions\**" />
+    <Compile Remove="Microsoft\**" />
+    <Compile Remove="Miscellaneous\**" />
+    <Compile Remove="Serilog\**" />
+    <Compile Remove="System\**" />
+    <Compile Remove="Utilities\**" />
+    <EmbeddedResource Remove="Encryption\**" />
+    <EmbeddedResource Remove="Environment\**" />
+    <EmbeddedResource Remove="Events\**" />
+    <EmbeddedResource Remove="Extensions\**" />
+    <EmbeddedResource Remove="Microsoft\**" />
+    <EmbeddedResource Remove="Miscellaneous\**" />
+    <EmbeddedResource Remove="Serilog\**" />
+    <EmbeddedResource Remove="System\**" />
+    <EmbeddedResource Remove="Utilities\**" />
+    <None Remove="Encryption\**" />
+    <None Remove="Environment\**" />
+    <None Remove="Events\**" />
+    <None Remove="Extensions\**" />
+    <None Remove="Microsoft\**" />
+    <None Remove="Miscellaneous\**" />
+    <None Remove="Serilog\**" />
+    <None Remove="System\**" />
+    <None Remove="Utilities\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="CronExpression.cs" />
+    <Compile Remove="IPagedList.cs" />
+    <Compile Remove="IWebHelper.cs" />
+    <Compile Remove="MimeTypes.cs" />
+    <Compile Remove="OrderTable.cs" />
+    <Compile Remove="PagedList.cs" />
+    <Compile Remove="SopException.cs" />
+    <Compile Remove="XmlHelper.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="9.0.0" />
-    <PackageReference Include="HtmlAgilityPack" Version="1.11.16" />
-    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
-    <PackageReference Include="Serilog" Version="2.9.0" />
-    <PackageReference Include="Serilog.Extensions.Logging" Version="3.0.1" />
-    <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
-    <PackageReference Include="Serilog.Sinks.File" Version="4.1.0" />
-    <PackageReference Include="StackExchange.Redis" Version="2.0.600" />
+    <PackageReference Include="Autofac" Version="4.9.4" />
+    <PackageReference Include="Castle.Core" Version="4.4.0" />
+     <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="3.1.0" />
+     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+     <PackageReference Include="StackExchange.Redis" Version="2.0.601" /> 
   </ItemGroup>
 
+  
 </Project>
+

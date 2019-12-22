@@ -1,78 +1,54 @@
+﻿ 
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<TargetFramework>netstandard2.0</TargetFramework>
-	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-   	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-
-    	<AssemblyName>Sop.Data</AssemblyName>
-    	<PackageId>Sop.Data</PackageId>
-   	 <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
-    	<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    	<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    	<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-   	 <RootNamespace />
-   	 <LangVersion>8</LangVersion>
-   	 <Title>Sop.Data</Title>
-   	 <Description>Sop.Data</Description>
+    <TargetFrameworks>netstandard2.0;net461;</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Version>0.5.0</Version>
+    <Authors>sopcce@hotmail.com;</Authors>
+    <Copyright>Copyright 2019 sopcce.com</Copyright>
+    <PackageId>Sop.Data</PackageId>
+    <Description>Sop.Data数据服务
+提供数据访问CURD（EntityFrameworkCore）,和复杂的SQL（Dapper）操作。
+</Description>
+    <PackageTags>Dapper;EntityFrameworkCore;IUnitOfWork;Autofac;NetCore</PackageTags>
+    <PackageProjectUrl>https://github.com/Sopcce</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/Sopcce/.Net-Common-Utility/master/favicon.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/Sopcce</RepositoryUrl>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PackageLicenseUrl>https://github.com/Sopcce</PackageLicenseUrl>
+    <RepositoryType>MIT</RepositoryType>
+    <PackageReleaseNotes>Dapper;EntityFrameworkCore;IUnitOfWork;Autofac;NetCore</PackageReleaseNotes>
+    <NeutralLanguage>en</NeutralLanguage>
+    <AssemblyVersion>0.5.0.0</AssemblyVersion>
+    <FileVersion>0.5.0.3</FileVersion>
+    <Company>sopcce@hotmail.com;</Company>
+    <Product>Sop</Product>
   </PropertyGroup>
- 
- 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <WarningsAsErrors />
-    
-  </PropertyGroup>
-
+  
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net451' ">
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+  </ItemGroup>
   <ItemGroup>
-    <Compile Remove="DapperRepository\**" />
-    <Compile Remove="Domain\**" />
-    <Compile Remove="obj\**" />
-    <EmbeddedResource Remove="DapperRepository\**" />
-    <EmbeddedResource Remove="Domain\**" />
-    <EmbeddedResource Remove="obj\**" />
-    <None Remove="DapperRepository\**" />
-    <None Remove="Domain\**" />
-    <None Remove="obj\**" />
+    <Compile Remove="CronExpression.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.4" />
-    <PackageReference Include="HtmlAgilityPack" Version="1.11.16" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="Serilog" Version="2.9.0" />
-    <PackageReference Include="Serilog.Extensions.Logging" Version="3.0.1" />
-    <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
-    <PackageReference Include="Serilog.Sinks.File" Version="4.1.0" />
-    <PackageReference Include="Serilog.Sinks.RollingFile" Version="3.3.0" />
-    <PackageReference Include="StackExchange.Redis" Version="2.0.601" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
-    <PackageReference Include="System.Collections.Immutable" Version="1.6.0" />
-    <PackageReference Include="Microsoft.Extensions.Localization" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.1.0" />
-    <PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
-    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.19" />
-    <PackageReference Include="System.Linq.Queryable" Version="4.3.0" />
-    <PackageReference Include="JetBrains.Annotations" Version="2019.1.3" />
-    <PackageReference Include="Nito.AsyncEx.Coordination" Version="5.0.0" />
-    <PackageReference Include="Nito.AsyncEx.Context" Version="5.0.0" />
-
-
-
-
-
+    <PackageReference Include="Castle.Core" Version="4.4.0" />
+    <PackageReference Include="Dapper" Version="1.60.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="3.1.0" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.2.0" /> 
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Caching\Redis" />
-  </ItemGroup>
+    <Folder Include="Dapper\Helper\" />
+  </ItemGroup> 
 
 </Project>
+

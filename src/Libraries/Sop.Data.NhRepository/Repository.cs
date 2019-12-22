@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using NHibernate;
 using NHibernate.Linq;
+using Sop.Data.Repository;
 
 namespace Sop.Data.NhRepositories
 {
@@ -19,15 +22,7 @@ namespace Sop.Data.NhRepositories
         /// </summary>
         private ISession Session => AppSessionFactory.OpenSession;
 
-        /// <summary>
-        /// 根据Id查询实体
-        /// </summary>
-        /// <param name="id">实体Id</param>
-        /// <returns>实体</returns>
-        public T Get(object id)
-        {
-            return Session.Get<T>(id);
-        } 
+     
  
         /// <summary>
         /// 创建实体
@@ -45,6 +40,11 @@ namespace Sop.Data.NhRepositories
             return obj;
         }
 
+        public Task InsertAsync(IEnumerable<T> entities)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// 更新实体
         /// </summary>
@@ -58,6 +58,16 @@ namespace Sop.Data.NhRepositories
             }
         }
 
+        public void Update(IEnumerable<T> entities)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(T entity, params Expression<Func<T, object>>[] properties)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// 删除实体
         /// </summary>
@@ -69,6 +79,11 @@ namespace Sop.Data.NhRepositories
                 Session.Delete(entity);
                 transaction.Commit();
             }
+        }
+
+        public void Delete(IEnumerable<T> entities)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -85,12 +100,36 @@ namespace Sop.Data.NhRepositories
             }
         }
 
+        public T GetById(object id)
+        {
+            return Session.Get<T>(id);
+        }
+
+        public Task<T> GetByIdAsync(object id)
+        {
+            return  Session.GetAsync<T>(id);
+        }
+
         /// <summary>
         /// 实体集合
         /// </summary>
-        public IQueryable<T> Table
+        public IQueryable<T> Table => Session.Query<T>();
+
+        public IQueryable<T> TableNoTracking => Session.Query<T>();
+
+        public void Insert(T entity)
         {
-            get { return Session.Query<T>(); }
+            throw new NotImplementedException();
+        }
+
+        public void Insert(IEnumerable<T> entities)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task InsertAsync(T entity)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -129,14 +168,14 @@ namespace Sop.Data.NhRepositories
         /// <param name="order">排序</param>
         /// <param name="pageSize">每页条数</param>
         /// <param name="pageIndex">第几页</param>
-        public IPagedList<T> Gets(Expression<Func<T, bool>> predicate, Action<OrderTable<T>> order, int pageSize, int pageIndex)
+        public IPageList<T> Gets(Expression<Func<T, bool>> predicate, Action<OrderTable<T>> order, int pageSize, int pageIndex)
         {
             var ts = Fetch(predicate, order);
 
             var totalCount = ts.ToFuture<T>().Count();
             var pagingTs = ts.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToFuture();
 
-            return new PagedList<T>(pagingTs.AsQueryable(), pageIndex, pageSize);
+            return new PageList<T>(pagingTs.AsQueryable(), pageIndex, pageSize);
         } 
     }
 }

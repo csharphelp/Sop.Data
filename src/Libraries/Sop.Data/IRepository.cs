@@ -1,70 +1,113 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace Sop.Data
 {
     /// <summary>
-    /// 仓储接口
+    /// This interface is implemented by all repositories to ensure implementation of fixed methods.
     /// </summary>
-    /// <typeparam name="T">仓储对应的实体</typeparam>
-    public interface IRepository<T> where T : class
+    /// <typeparam name="TEntity">Main Entity type this repository works on</typeparam>
+    public interface IRepository<TEntity> where TEntity : class
     {
-        ///// <summary>
-        ///// ISession实例
-        ///// </summary>
-        //ISession Session { get; }
+
+        #region Select/Get/Query
+        /// <summary>
+        /// GetById
+        /// </summary>
+        /// <param name="id">主键</param>
+        /// <returns>Entity</returns>
+        TEntity GetById(object id);
 
         /// <summary>
-        /// 根据Id查询实体
+        /// GetByIdAsync
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        T Get(object id);
+        /// <param name="id">主键</param>
+        /// <returns>Entity</returns>
+        Task<TEntity> GetByIdAsync(object id);
 
         /// <summary>
-        /// 创建实体
+        /// Table Tracking
         /// </summary>
-        /// <param name="entity">实体</param>
-        object Create(T entity);
+        IQueryable<TEntity> Table { get; }
 
         /// <summary>
-        /// 更新实体
+        /// TableNoTracking
         /// </summary>
-        /// <param name="entity">实体</param>
-        void Update(T entity);
+        IQueryable<TEntity> TableNoTracking { get; }
+
+        #endregion
+
+        #region Insert
+        /// <summary>
+        /// Insert
+        /// </summary>
+        /// <param name="entity">Inserted entity</param>
+        void Insert(TEntity entity);
 
         /// <summary>
-        /// 删除实体
+        /// Inserts
         /// </summary>
-        /// <param name="entity">实体</param>
-        void Delete(T entity);
+        /// <param name="entities">Inserted entity</param>
+        void Insert(IEnumerable<TEntity> entities);
+        /// <summary>
+        /// 添加实体
+        /// </summary>
+        /// <param name="entity">Inserted entity</param>
+        Task InsertAsync(TEntity entity);
 
         /// <summary>
-        /// 根据查询条件批量删除
+        /// InsertAsync
         /// </summary>
-        /// <param name="predicate">查询条件</param>
-        void Delete(Expression<Func<T, bool>> predicate);
-        /// <summary>
-        /// 实体集合
-        /// </summary>
-        IQueryable<T> Table { get; }
-        /// <summary>
-        /// 查询
-        /// </summary>
-        /// <param name="predicate">查询条件</param>
-        /// <param name="order">排序</param>
-        /// <returns>IQueryable类型的实体集合</returns>
-        IQueryable<T> Fetch(Expression<Func<T, bool>> predicate, Action<OrderTable<T>> order);
-        /// <summary>
-        /// 分页查询
-        /// </summary>
-        /// <param name="predicate">查询条件</param>
-        /// <param name="order">排序</param>
-        /// <param name="pageSize">每页条数</param>
-        /// <param name="pageIndex">第几页</param>
-        IPagedList<T> Gets(Expression<Func<T, bool>> predicate, Action<OrderTable<T>> order, int pageSize, int pageIndex);
+        /// <param name="entities">Inserted entity</param>
+        Task InsertAsync(IEnumerable<TEntity> entities);
+        #endregion
 
+        #region Update
+        /// <summary>
+        /// Update
+        /// </summary>
+        /// <param name="entity">Entity</param>
+        void Update(TEntity entity);
+
+        /// <summary>
+        /// Updates
+        /// </summary>
+        /// <param name="entities"></param>
+        void Update(IEnumerable<TEntity> entities);
+
+        /// <summary>
+        /// Update
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="properties">Action that can be used to change values of the entity</param>
+        /// <returns>Updated entity</returns>
+        void Update(TEntity entity, params Expression<Func<TEntity, object>>[] properties);
+        #endregion
+
+        #region Delete
+        /// <summary>
+        /// Delete
+        /// </summary>
+        /// <param name="entity">Entity to be deleted</param>
+        void Delete(TEntity entity);
+
+
+        /// <summary>
+        /// Deletes
+        /// </summary>
+        /// <param name="entities"></param>
+        void Delete(IEnumerable<TEntity> entities);
+
+
+        /// <summary>
+        /// Delete by lambda
+        /// </summary>
+        /// <param name="predicate">A condition to filter entities</param>
+        void Delete(Expression<Func<TEntity, bool>> predicate);
+        #endregion
 
     }
 }
