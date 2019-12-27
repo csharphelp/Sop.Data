@@ -1,8 +1,1982 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = null;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!DOCTYPE html>
+
+<html lang="en" data-react-helmet="lang">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <title>ELESTYLE（エレスタイル） - 日本のキャッシュレス社会を加速させます</title>
+    <link data-react-helmet="true" rel="stylesheet" href="/icon-font/iconfont.css">
+    <meta data-react-helmet="true" name="description" content=" ">
+    <meta data-react-helmet="true" property="og:title" content="ELESTYLE（エレスタイル）">
+    <meta data-react-helmet="true" property="og:description" content=" ">
+    <meta data-react-helmet="true" property="og:type" content="website">
+    <meta data-react-helmet="true" name="twitter:card" content=" ">
+    <meta data-react-helmet="true" name="twitter:creator" content=" .jp">
+    <meta data-react-helmet="true" name="twitter:title" content=" （エレスタイル）">
+    <meta data-react-helmet="true" name="twitter:description" content=" ">
+    <meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no, viewport-fit=cover">
+    <link rel="icon" href="https://elestyle.jp/icons/icon-48x48.png?v=38873500050f56d8cbce59bc980d386b">
+
+    <link href="https://raw.githubusercontent.com/jgthms/minireset.css/master/minireset.min.css" />
+    <style data-href="/styles.69d96582feee09a482a8.css">
+        /*! minireset.css v0.0.6 | MIT License | github.com/jgthms/minireset.css */
+
+        blockquote, body, dd, dl, dt, fieldset, figure, h1, h2, h3, h4, h5, h6, hr, html, iframe, legend, li, ol, p, pre, textarea, ul {
+            margin: 0;
+            padding: 0
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: 400
+        }
+
+        ul {
+            list-style: none
+        }
+
+        button, input, select, textarea {
+            margin: 0
+        }
+
+        html {
+            box-sizing: border-box
+        }
+
+        *, :after, :before {
+            box-sizing: inherit
+        }
+
+        img, video {
+            height: auto;
+            max-width: 100%
+        }
+
+        iframe {
+            border: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        td, th {
+            padding: 0
+        }
+
+            td:not([align]), th:not([align]) {
+                text-align: left
+            }
+
+        @@font-face {
+            font-family: BC;
+            src: url(/font/bc.ttf)
+        }
+
+        .clearfix:after {
+            content: "";
+            display: block;
+            clear: both
+        }
+
+        body {
+            font-family: Noto Sans,sans-serif
+        }
+
+            body #page-wrapper > main {
+                margin-top: 80px;
+                min-height: calc(100vh - 152px)
+            }
+
+            body .client-container, body .contact-container, body .media-container, body .news-container, body .service-container, body .team-board-container {
+                max-width: 880px;
+                margin: 0 auto
+            }
+
+        @@media only screen and (max-width:991px) {
+            body .contact-container, body .news-container, body .team-board-container {
+                margin: 0 50px
+            }
+        }
+
+        @@media only screen and (max-width:767px) {
+            body .contact-container, body .media-container, body .news-container {
+                margin: 0 20px
+            }
+        }
+
+        body .team-board-container {
+            padding-top: 250px;
+            margin-bottom: 360px
+        }
+
+            body .team-board-container .team-vision .slogan {
+                font-family: BC;
+                font-size: 60px;
+                font-weight: 700;
+                color: #0d171a;
+                line-height: 60px
+            }
+
+                body .team-board-container .team-vision .slogan .emphasis-pc {
+                    color: #0d41b5;
+                    display: block !important
+                }
+
+                body .team-board-container .team-vision .slogan .emphasis-mobile {
+                    color: #0d41b5;
+                    display: none !important
+                }
+
+                body .team-board-container .team-vision .slogan .text-split-animate {
+                    display: block
+                }
+
+        @@media only screen and (max-width:991px) {
+            body .team-board-container .team-vision .slogan {
+                font-size: 56px
+            }
+        }
+
+        @@media only screen and (max-width:767px) {
+            body .team-board-container {
+                margin: 0 auto 170px;
+                padding: 140px 20px 0;
+                max-width: 520px
+            }
+
+                body .team-board-container .team-vision {
+                    text-align: center
+                }
+
+                    body .team-board-container .team-vision .slogan {
+                        font-size: 48px;
+                        line-height: 1;
+                        display: inline-block;
+                        text-align: left;
+                        text-align: center
+                    }
+
+                        body .team-board-container .team-vision .slogan .emphasis-pc {
+                            color: #0d41b5;
+                            display: none !important
+                        }
+
+                        body .team-board-container .team-vision .slogan .emphasis-mobile {
+                            color: #0d41b5;
+                            display: inline !important
+                        }
+        }
+
+        body .service-container .display-card {
+            margin-bottom: 90px
+        }
+
+            body .service-container .display-card .display-card-main-content {
+                display: block;
+                max-width: 450px;
+                float: left
+            }
+
+                body .service-container .display-card .display-card-main-content .description {
+                    margin: 15px 0 5px;
+                    font-size: 28px;
+                    font-weight: 700;
+                    color: #333
+                }
+
+                body .service-container .display-card .display-card-main-content .additional {
+                    font-size: 16px;
+                    line-height: 1.6;
+                    color: #999
+                }
+
+                body .service-container .display-card .display-card-main-content .display-card-action {
+                    display: inline-block;
+                    margin-top: 30px;
+                    padding: 10px 50px;
+                    color: #fff;
+                    font-size: 16px;
+                    border-radius: 22px;
+                    background-color: #0d41b5;
+                    text-decoration: none;
+                    -webkit-transition: background .2s;
+                    transition: background .2s;
+                    width: 260px;
+                    text-align: center
+                }
+
+                    body .service-container .display-card .display-card-main-content .display-card-action:hover {
+                        background: #0b399d
+                    }
+
+            body .service-container .display-card .display-card-vision {
+                display: block;
+                float: right;
+                margin-right: 40px
+            }
+
+            body .service-container .display-card.elepay .display-card-main-content img {
+                width: 221px
+            }
+
+            body .service-container .display-card.elepay .display-card-vision {
+                margin-top: 80px
+            }
+
+                body .service-container .display-card.elepay .display-card-vision img {
+                    width: 285px
+                }
+
+            body .service-container .display-card.oneqr .display-card-main-content img {
+                width: 233px
+            }
+
+            body .service-container .display-card.oneqr .display-card-vision {
+                margin-top: 35px
+            }
+
+                body .service-container .display-card.oneqr .display-card-vision img {
+                    width: 280px
+                }
+
+            body .service-container .display-card.consulting .display-card-main-content img {
+                width: 322px
+            }
+
+            body .service-container .display-card.consulting .display-card-vision {
+                margin-top: 35px
+            }
+
+                body .service-container .display-card.consulting .display-card-vision img {
+                    width: 255px
+                }
+
+        @@media only screen and (max-width:991px) {
+            body .service-container {
+                margin-left: 40px;
+                margin-right: 40px
+            }
+
+                body .service-container .display-card .display-card-main-content {
+                    max-width: 360px
+                }
+
+                body .service-container .display-card .display-card-vision {
+                    margin-right: 0
+                }
+        }
+
+        @@media only screen and (max-width:767px) {
+            body .service-container .display-card, body .service-container .section-title {
+                margin-bottom: 80px
+            }
+
+                body .service-container .display-card .display-card-main-content {
+                    float: inherit;
+                    text-align: center;
+                    max-width: 450px;
+                    margin: 0 auto
+                }
+
+                    body .service-container .display-card .display-card-main-content .display-card-title {
+                        margin-top: 20px;
+                        margin-bottom: 10px
+                    }
+
+                        body .service-container .display-card .display-card-main-content .display-card-title img {
+                            height: 45px !important;
+                            width: auto !important
+                        }
+
+                    body .service-container .display-card .display-card-main-content .description {
+                        display: none
+                    }
+
+                    body .service-container .display-card .display-card-main-content .additional {
+                        text-align: left;
+                        font-size: 14px;
+                        color: #333;
+                        line-height: 1.8;
+                        text-align: justify
+                    }
+
+                        body .service-container .display-card .display-card-main-content .additional p {
+                            margin-bottom: 5px
+                        }
+
+                    body .service-container .display-card .display-card-main-content .display-card-action {
+                        margin-top: 20px
+                    }
+
+                body .service-container .display-card.consulting .display-card-main-content img {
+                    height: 36px !important;
+                    width: auto !important
+                }
+
+                body .service-container .display-card .display-card-vision {
+                    display: none
+                }
+        }
+
+        body .news-container .news-read-more {
+            color: #0d41b5;
+            text-decoration: none;
+            -webkit-transition: color .2s;
+            transition: color .2s;
+            font-weight: 700;
+            margin-left: 20px
+        }
+
+            body .news-container .news-read-more:hover {
+                color: #0b399d
+            }
+
+        @@media only screen and (max-width:767px) {
+            body .news-container .news-section {
+                margin-top: 80px
+            }
+
+                body .news-container .news-section .news .news-title {
+                    width: 100%;
+                    word-break: break-all
+                }
+
+            body .news-container .news-read-more {
+                display: block;
+                width: 260px;
+                text-align: center;
+                margin: auto;
+                padding: 10px 50px;
+                color: #fff;
+                font-size: 16px;
+                font-weight: 400;
+                border-radius: 22px;
+                background-color: #0d41b5;
+                text-decoration: none;
+                -webkit-transition: background .2s;
+                transition: background .2s
+            }
+
+                body .news-container .news-read-more:hover {
+                    color: #fff;
+                    background: #0b399d
+                }
+        }
+
+        body .client-container .client-list {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding-top: 20px
+        }
+
+            body .client-container .client-list img {
+                display: flex;
+                max-height: 120px
+            }
+
+        @@media only screen and (max-width:991px) {
+            body .client-container .client-list {
+                padding-left: 0;
+                padding-right: 0
+            }
+        }
+
+        @@media only screen and (max-width:767px) {
+            body .client-container .client-list {
+                flex-direction: column
+            }
+
+                body .client-container .client-list img {
+                    margin-bottom: 100px
+                }
+
+                    body .client-container .client-list img:last-child {
+                        margin-bottom: 0
+                    }
+        }
+
+        body .media-container .media-list {
+            display: flex;
+            padding-top: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center
+        }
+
+            body .media-container .media-list > div {
+                height: 100px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-basis: 25%
+            }
+
+        @@media only screen and (max-width:991px) {
+            body .media-container .media-list > div {
+                flex-basis: 33%;
+                padding: 20px
+            }
+        }
+
+        @@media only screen and (max-width:767px) {
+            body .media-container .media-list > div {
+                flex-basis: 50%;
+                padding: 10px
+            }
+
+                body .media-container .media-list > div img {
+                    max-height: 65px;
+                    max-width: 130px !important;
+                    height: auto !important;
+                    width: auto !important
+                }
+
+                body .media-container .media-list > div:nth-child(5) img, body .media-container .media-list > div:nth-child(6) img {
+                    max-height: 45px
+                }
+
+                body .media-container .media-list > div:nth-child(7) img {
+                    max-height: 70px
+                }
+        }
+
+        body .about-container .company-info {
+            font-size: 16px;
+            border-collapse: separate;
+            border-spacing: 0 20px;
+            margin: -10px auto;
+            position: relative
+        }
+
+            body .about-container .company-info tr td {
+                vertical-align: top;
+                line-height: 1.5
+            }
+
+                body .about-container .company-info tr td:first-child, body .about-container .company-info tr td:nth-child(2) {
+                    color: #0d171a;
+                    font-weight: 700
+                }
+
+                body .about-container .company-info tr td:nth-child(3) {
+                    color: #666
+                }
+
+                body .about-container .company-info tr td:nth-child(2) {
+                    padding-right: 15px
+                }
+
+        @@media only screen and (max-width:767px) {
+            body .about-container .company-info {
+                margin-top: 60px;
+                font-size: 14px;
+                border-spacing: 0 16px
+            }
+        }
+
+        body .contact-container {
+            margin-top: 200px;
+            margin-bottom: 270px
+        }
+
+            body .contact-container .section-title {
+                margin-top: 0
+            }
+
+            body .contact-container .contact-form {
+                margin: 0 auto;
+                text-align: center
+            }
+
+                body .contact-container .contact-form input[type=email], body .contact-container .contact-form input[type=text], body .contact-container .contact-form textarea {
+                    outline: none;
+                    padding: 10px 15px;
+                    color: #333;
+                    border-radius: 4px;
+                    border: 1px solid #ddd;
+                    margin-top: 20px;
+                    -webkit-transition: border .5s;
+                    transition: border .5s
+                }
+
+                    body .contact-container .contact-form input[type=email]::-webkit-input-placeholder, body .contact-container .contact-form input[type=text]::-webkit-input-placeholder, body .contact-container .contact-form textarea::-webkit-input-placeholder {
+                        color: #999
+                    }
+
+                    body .contact-container .contact-form input[type=email]:-ms-input-placeholder, body .contact-container .contact-form input[type=text]:-ms-input-placeholder, body .contact-container .contact-form textarea:-ms-input-placeholder {
+                        color: #999
+                    }
+
+                    body .contact-container .contact-form input[type=email]::-ms-input-placeholder, body .contact-container .contact-form input[type=text]::-ms-input-placeholder, body .contact-container .contact-form textarea::-ms-input-placeholder {
+                        color: #999
+                    }
+
+                    body .contact-container .contact-form input[type=email]::placeholder, body .contact-container .contact-form input[type=text]::placeholder, body .contact-container .contact-form textarea::placeholder {
+                        color: #999
+                    }
+
+                    body .contact-container .contact-form input[type=email]:focus, body .contact-container .contact-form input[type=email]:hover, body .contact-container .contact-form input[type=text]:focus, body .contact-container .contact-form input[type=text]:hover, body .contact-container .contact-form textarea:focus, body .contact-container .contact-form textarea:hover {
+                        border: 1px solid #999
+                    }
+
+                body .contact-container .contact-form input[type=email], body .contact-container .contact-form input[type=text] {
+                    height: 40px;
+                    width: 100%
+                }
+
+                body .contact-container .contact-form textarea {
+                    width: 100%;
+                    height: 100px
+                }
+
+                body .contact-container .contact-form .term-tip {
+                    text-align: center;
+                    font-size: 12px;
+                    color: #999;
+                    margin: 20px 0
+                }
+
+                    body .contact-container .contact-form .term-tip .required-tip {
+                        color: red;
+                        position: absolute;
+                        font-weight: 700;
+                        margin-left: -15px;
+                        margin-top: 1px;
+                        font-size: 14px
+                    }
+
+                    body .contact-container .contact-form .term-tip label {
+                        margin-left: 5px
+                    }
+
+                    body .contact-container .contact-form .term-tip a {
+                        text-decoration: none;
+                        color: #333;
+                        margin: 0 5px;
+                        -webkit-transition: color .2s;
+                        transition: color .2s
+                    }
+
+                        body .contact-container .contact-form .term-tip a:hover {
+                            color: #0d41b5
+                        }
+
+                body .contact-container .contact-form .submit-button {
+                    border: none;
+                    background: #0d41b5;
+                    cursor: pointer;
+                    outline: none;
+                    -webkit-transition: background .2s;
+                    transition: background .2s;
+                    padding: 10px 80px;
+                    color: #fff;
+                    font-size: 16px;
+                    border-radius: 22px;
+                    background-color: #0d41b5
+                }
+
+                    body .contact-container .contact-form .submit-button:hover {
+                        background: #0b399d
+                    }
+
+                    body .contact-container .contact-form .submit-button:disabled {
+                        opacity: .2;
+                        cursor: not-allowed
+                    }
+
+        @@media only screen and (max-width:767px) {
+            body .contact-container {
+                margin-top: 120px;
+                margin-bottom: 120px
+            }
+
+                body .contact-container .section-title {
+                    margin-bottom: 40px
+                }
+
+                body .contact-container .contact-form .submit-button {
+                    width: 260px
+                }
+        }
+
+        .header {
+            background: #fff;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 2000;
+            box-shadow: 0 1px 0 0 rgba(0,0,0,.1)
+        }
+
+            .header .header-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                max-width: 960px;
+                height: 80px;
+                margin: 0 auto;
+                font-family: Noto Sans,sans-serif
+            }
+
+                .header .header-container .logo-container {
+                    margin-left: 40px;
+                    padding-top: 5px
+                }
+
+        @@media only screen and (max-width:991px) {
+            .header .header-container {
+                padding: 0 10px
+            }
+        }
+
+        @@media only screen and (max-width:767px) {
+            .header .header-container {
+                padding: 0 20px
+            }
+
+                .header .header-container .logo-container {
+                    margin-left: 0
+                }
+        }
+
+        .footer-container {
+            color: #999;
+            padding: 25px 0;
+            box-shadow: 0 -1px 0 0 rgba(0,0,0,.1)
+        }
+
+            .footer-container .footer-wrapper {
+                max-width: 960px;
+                margin: 0 auto
+            }
+
+                .footer-container .footer-wrapper .privacy {
+                    display: inline-block;
+                    margin-left: 50px
+                }
+
+                    .footer-container .footer-wrapper .privacy a {
+                        color: #999;
+                        margin-right: 20px;
+                        text-decoration: none;
+                        -webkit-transition: color .2s;
+                        transition: color .2s
+                    }
+
+                        .footer-container .footer-wrapper .privacy a:hover {
+                            color: #333
+                        }
+
+                .footer-container .footer-wrapper .copyright {
+                    display: inline-block;
+                    margin-right: 20px
+                }
+
+                .footer-container .footer-wrapper .socal-list {
+                    display: inline-block;
+                    text-align: right;
+                    float: right
+                }
+
+                    .footer-container .footer-wrapper .socal-list a {
+                        text-decoration: none;
+                        color: #333
+                    }
+
+                        .footer-container .footer-wrapper .socal-list a .iconfont {
+                            margin-right: 20px;
+                            font-size: 14px
+                        }
+
+        @@media only screen and (max-width:991px) {
+            .footer-container .footer-wrapper .privacy {
+                display: block;
+                text-align: center;
+                margin-left: 0
+            }
+
+                .footer-container .footer-wrapper .privacy a {
+                    margin-right: 10px
+                }
+
+                    .footer-container .footer-wrapper .privacy a:nth-child(2) {
+                        margin-right: 0
+                    }
+
+            .footer-container .footer-wrapper .copyright {
+                display: block;
+                text-align: center;
+                margin: 20px 0
+            }
+
+            .footer-container .footer-wrapper .socal-list {
+                float: inherit;
+                display: block;
+                text-align: center
+            }
+        }
+
+        @@media only screen and (max-width:767px) {
+            .footer-container .footer-wrapper .privacy {
+                display: block;
+                text-align: center
+            }
+
+                .footer-container .footer-wrapper .privacy a {
+                    display: block;
+                    margin-bottom: 20px;
+                    margin-right: 0;
+                    color: #333
+                }
+
+            .footer-container .footer-wrapper .copyright {
+                font-size: 14px
+            }
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 200px auto 60px;
+            position: relative
+        }
+
+            .section-title h3 {
+                height: 50px;
+                font-size: 36px;
+                color: #0d171a;
+                margin-bottom: 10px
+            }
+
+                .section-title h3 h1 {
+                    font-weight: 700
+                }
+
+            .section-title:after {
+                content: " ";
+                display: block;
+                position: absolute;
+                width: 80px;
+                height: 2px;
+                border-radius: 1px;
+                background-color: #0d41b5;
+                left: 50%;
+                -webkit-transform: translateX(-50%);
+                transform: translateX(-50%)
+            }
+
+        @@media only screen and (max-width:767px) {
+            .section-title {
+                margin-top: 120px;
+                margin-bottom: 45px
+            }
+        }
+
+        .news-section {
+            padding-left: 20px
+        }
+
+            .news-section .news {
+                font-size: 16px;
+                margin-bottom: 35px
+            }
+
+                .news-section .news:before {
+                    content: " ";
+                    width: 3px;
+                    height: 3px;
+                    border-radius: 100%;
+                    position: absolute;
+                    background: #333;
+                    display: inline-block;
+                    margin-left: -10px;
+                    margin-top: 8px
+                }
+
+                .news-section .news .news-title {
+                    display: inline-block;
+                    width: calc(100% - 140px);
+                    text-align: justify
+                }
+
+                    .news-section .news .news-title a {
+                        text-decoration: none;
+                        color: #333;
+                        -webkit-transition: color .2s;
+                        transition: color .2s
+                    }
+
+                        .news-section .news .news-title a:hover {
+                            color: #0d41b5
+                        }
+
+                .news-section .news .news-date {
+                    display: inline-block;
+                    color: #999;
+                    width: 140px;
+                    -webkit-transition: color .2s;
+                    transition: color .2s;
+                    margin-left: -5px;
+                    text-align: right;
+                    vertical-align: top
+                }
+
+                .news-section .news:hover .news-date {
+                    color: #333
+                }
+
+        @@media only screen and (max-width:767px) {
+            .news-section .news {
+                font-size: 14px
+            }
+
+                .news-section .news .news-date {
+                    margin-left: 0;
+                    margin-top: 8px;
+                    text-align: left
+                }
+        }
+
+        .bm-burger-button {
+            position: fixed;
+            display: none;
+            width: 36px;
+            height: 30px;
+            right: 20px;
+            top: 20px
+        }
+
+            .bm-burger-button > button {
+                outline: none
+            }
+
+        @@media only screen and (max-width:991px) {
+            .bm-burger-button {
+                display: block;
+                right: 50px
+            }
+
+            .nav-pc {
+                display: none
+            }
+        }
+
+        @@media only screen and (max-width:767px) {
+            .bm-burger-button {
+                right: 20px
+            }
+        }
+
+        .bm-burger-bars {
+            background: #333
+        }
+
+            .bm-burger-bars.bm-burger-bars-hover {
+                background: #333;
+                opacity: .9 !important
+            }
+
+        .bm-cross-button {
+            width: 30px !important;
+            height: 30px !important;
+            right: 45px !important;
+            top: 20px !important
+        }
+
+            .bm-cross-button button {
+                outline: none
+            }
+
+            .bm-cross-button .bm-cross {
+                background: #bdc3c7;
+                height: 30px !important
+            }
+
+        .bm-menu {
+            background: #373a47;
+            padding: 2.5em 1.5em 0;
+            font-size: 1.15em
+        }
+
+        .bm-morph-shape {
+            fill: #373a47
+        }
+
+        .bm-item-list {
+            color: #b8b7ad;
+            padding: .8em
+        }
+
+            .bm-item-list .nav-link a {
+                display: block;
+                font-size: 16px;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                border-bottom: 1px solid #999;
+                color: #999;
+                text-decoration: none;
+                -webkit-transition: background .3s,color .3s,border-color .3s;
+                transition: background .3s,color .3s,border-color .3s
+            }
+
+                .bm-item-list .nav-link.active a, .bm-item-list .nav-link a:hover {
+                    color: #fff
+                }
+
+        .bm-item {
+            display: inline-block
+        }
+
+        .bm-overlay {
+            background: rgba(0,0,0,.3)
+        }
+
+        .nav-pc {
+            height: 100%
+        }
+
+            .nav-pc .nav-list {
+                display: inline-block;
+                height: 100%
+            }
+
+                .nav-pc .nav-list .nav-link {
+                    display: inline-block;
+                    height: 100%;
+                    margin-right: 30px
+                }
+
+                    .nav-pc .nav-list .nav-link:last-child {
+                        margin-right: 0
+                    }
+
+                    .nav-pc .nav-list .nav-link a:active, .nav-pc .nav-list .nav-link a:hover, .nav-pc .nav-list .nav-link a:link, .nav-pc .nav-list .nav-link a:visited {
+                        display: inline-block;
+                        text-decoration: none;
+                        line-height: 50px;
+                        color: #666;
+                        font-size: 16px;
+                        padding-top: 15px;
+                        -webkit-transition: color .3s;
+                        transition: color .3s
+                    }
+
+                    .nav-pc .nav-list .nav-link a:hover {
+                        color: #333
+                    }
+
+                    .nav-pc .nav-list .nav-link a:after {
+                        content: "";
+                        display: block;
+                        width: 0;
+                        height: 2px;
+                        background: -webkit-gradient(linear,left top,right top,from(#fff),to(#708ed5));
+                        background: linear-gradient(90deg,#fff 0,#708ed5);
+                        -webkit-transition: width .2s;
+                        transition: width .2s
+                    }
+
+                    .nav-pc .nav-list .nav-link a:hover:after {
+                        width: 100%
+                    }
+
+                    .nav-pc .nav-list .nav-link.active a:active, .nav-pc .nav-list .nav-link.active a:hover, .nav-pc .nav-list .nav-link.active a:link, .nav-pc .nav-list .nav-link.active a:visited {
+                        color: #333;
+                        font-weight: 700
+                    }
+
+                        .nav-pc .nav-list .nav-link.active a:active:after, .nav-pc .nav-list .nav-link.active a:hover:after, .nav-pc .nav-list .nav-link.active a:link:after, .nav-pc .nav-list .nav-link.active a:visited:after {
+                            width: 100%
+                        }
+
+        .text-split-animate {
+            display: inline-block
+        }
+
+            .text-split-animate .slid-char-container {
+                display: inline-block;
+                overflow: hidden
+            }
+
+                .text-split-animate .slid-char-container .slid-char {
+                    display: block;
+                    -webkit-transition-delay: 25ms;
+                    transition-delay: 25ms;
+                    -webkit-transition: opacity .9s cubic-bezier(.3,.4,.1,1),-webkit-transform .9s cubic-bezier(.3,.4,.1,1);
+                    transition: opacity .9s cubic-bezier(.3,.4,.1,1),-webkit-transform .9s cubic-bezier(.3,.4,.1,1);
+                    transition: opacity .9s cubic-bezier(.3,.4,.1,1),transform .9s cubic-bezier(.3,.4,.1,1);
+                    transition: opacity .9s cubic-bezier(.3,.4,.1,1),transform .9s cubic-bezier(.3,.4,.1,1),-webkit-transform .9s cubic-bezier(.3,.4,.1,1);
+                    -webkit-transform: translate(100%);
+                    transform: translate(100%);
+                    opacity: 0
+                }
+
+                    .text-split-animate .slid-char-container .slid-char.empty {
+                        width: 20px
+                    }
+
+                .text-split-animate .slid-char-container.show-animate .slid-char {
+                    -webkit-transform: translate(0);
+                    transform: translate(0);
+                    opacity: 1
+                }
+
+        @@keyframes fadeInUp {
+            0% {
+                -webkit-transform: translate3d(0,40px,0);
+                transform: translate3d(0,40px,0)
+            }
+
+            to {
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0);
+                opacity: 1
+            }
+        }
+
+        @@-webkit-keyframes fadeInUp {
+            0% {
+                -webkit-transform: translate3d(0,25px,0);
+                transform: translate3d(0,25px,0)
+            }
+
+            to {
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0);
+                opacity: 1
+            }
+        }
+
+        .fadeInUp {
+            -webkit-animation-name: fadeInUp;
+            animation-name: fadeInUp;
+            -webkit-animation-duration: .6s;
+            animation-duration: .6s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+            -webkit-transition-timing-function: ease;
+            transition-timing-function: ease
+        }
+
+        @@media only screen and (max-width:767px) {
+            .fadeInUp {
+                -webkit-animation-name: none;
+                animation-name: none
+            }
+        }
+
+        .text-fade-in {
+            opacity: 0
+        }
+
+        @@media only screen and (max-width:767px) {
+            .text-fade-in {
+                opacity: 1
+            }
+        }
+
+        .article-container {
+            max-width: 730px;
+            margin: 80px auto;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 200;
+            line-height: 1.5;
+            color: #212529;
+            text-align: left;
+            background-color: #fff;
+            font-family: Hiragino Sans,Arial,Helvetica Neue,YuGothic,\\30d2\30e9\30ae\30ce\89d2\30b4 ProN W3,\\30e1\30a4\30ea\30aa,Meiryo,sans-serif,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji
+        }
+
+            .article-container h1 {
+                color: #0d171a;
+                text-align: center;
+                font-size: 32px;
+                font-weight: 200;
+                margin: 60px
+            }
+
+                .article-container h1 p {
+                    border-bottom: 1px solid #0d171a;
+                    display: inline-block
+                }
+
+            .article-container p, .article-container ul {
+                margin-bottom: 20px
+            }
+
+                .article-container p a, .article-container ul a {
+                    text-decoration: none;
+                    color: #0d171a;
+                    padding-left: 5px
+                }
+
+            .article-container ul {
+                list-style: inherit;
+                margin-left: 19px
+            }
+
+                .article-container ul li {
+                    margin-bottom: 20px;
+                    display: list-item
+                }
+
+                    .article-container ul li:before {
+                        content: " ";
+                        width: 3px;
+                        height: 3px;
+                        border-radius: 100%;
+                        margin-right: -5px
+                    }
+
+        .field {
+            display: inline-block;
+            margin-right: 15px;
+            padding-top: 20px;
+            width: calc((100% - 15px)/2)
+        }
+
+            .field input, .field textarea {
+                -webkit-appearance: none
+            }
+
+            .field:nth-child(2n) {
+                margin-right: 0
+            }
+
+            .field.textarea {
+                width: 100%
+            }
+
+            .field .title {
+                position: absolute;
+                font-size: 14px;
+                margin-left: 15px;
+                margin-top: -5px
+            }
+
+            .field .required:before {
+                content: "*";
+                font-weight: 700;
+                position: absolute;
+                margin-left: -10px;
+                margin-top: 2px;
+                color: red
+            }
+
+            .field.field-error input, .field.field-error textarea {
+                border: 1px solid red !important
+            }
+
+            .field .error {
+                display: block;
+                position: absolute;
+                font-size: 12px;
+                padding-left: 15px;
+                color: red
+            }
+
+        @@media only screen and (max-width:767px) {
+            .field {
+                width: 100%
+            }
+        }
+    </style>
+</head>
+<body>
+    <noscript id="gatsby-noscript">This app works best with JavaScript enabled.</noscript>
+    <div id="___gatsby">
+        <div style="outline: none" tabindex="-1" role="group" id="gatsby-focus-wrapper">
+            <div id="page-wrapper">
+                <header class="header">
+                    <div>
+                        <div class="bm-overlay" style="position: fixed; z-index: 1000; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.3); opacity: 0; -moz-transform: translate3d(100%, 0, 0); -ms-transform: translate3d(100%, 0, 0); -o-transform: translate3d(100%, 0, 0); -webkit-transform: translate3d(100%, 0, 0); transform: translate3d(100%, 0, 0); transition: opacity 0.3s, transform 0s 0.3s">
+                        </div>
+                        <div id="" class="bm-menu-wrap nav-mobile" style="position: fixed; right: 0; z-index: 1100; width: 300px; height: 100%; -moz-transform: translate3d(100%, 0, 0); -ms-transform: translate3d(100%, 0, 0); -o-transform: translate3d(100%, 0, 0); -webkit-transform: translate3d(100%, 0, 0); transform: translate3d(100%, 0, 0); transition: all 0.5s">
+                            <div class="bm-menu" style="height: 100%; box-sizing: border-box; overflow: auto">
+                                <nav class="bm-item-list" style="height: 100%">
+                                    <ul class="nav-list">
+                                        <li class="nav-link ">
+                                            <a href="/#service" target="_self" rel="noopener noreferrer">
+                                                サービス
+                                            </a>
+                                        </li>
+                                        <li class="nav-link ">
+                                            <a href="/#news" target="_self" rel="noopener noreferrer">
+                                                お知らせ
+                                            </a>
+                                        </li>
+                                        <li class="nav-link ">
+                                            <a href="/#media" target="_self" rel="noopener noreferrer">
+                                                メディア掲載実績
+                                            </a>
+                                        </li>
+                                        <li class="nav-link ">
+                                            <a href="/#about" target="_self" rel="noopener noreferrer">
+                                                会社概要
+                                            </a>
+                                        </li>
+                                        <li class="nav-link ">
+                                            <a href="/#contact" target="_self" rel="noopener noreferrer">
+                                                お問い合わせ
+                                            </a>
+                                        </li>
+                                        <li class="nav-link ">
+                                            <a href="https://www.wantedly.com/companies/elestyle" target="_blank"
+                                               rel="noopener noreferrer">
+                                                採用情報
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div>
+                                <div class="bm-cross-button" style="position: absolute; width: 24px; height: 24px; right: 8px; top: 8px">
+                                    <span style="position: absolute; top: 6px; right: 14px">
+                                        <span class="bm-cross" style="position: absolute; width: 3px; height: 14px; transform: rotate(45deg)">
+                                        </span>
+                                        <span class="bm-cross" style="position: absolute; width: 3px; height: 14px; transform: rotate(-45deg)">
+                                        </span>
+                                    </span>
+                                    <button style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; margin: 0; padding: 0; border: none; font-size: 0; background: transparent; cursor: pointer"
+                                            tabindex="-1">
+                                        Close Menu
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="bm-burger-button" style="z-index: 1000">
+                                <span>
+                                    <span class="bm-burger-bars" style="position: absolute; height: 20%; left: 0; right: 0; top: 0%; opacity: 1">
+                                    </span>
+                                    <span class="bm-burger-bars" style="position: absolute; height: 20%; left: 0; right: 0; top: 40%; opacity: 1">
+                                    </span>
+                                    <span class="bm-burger-bars" style="position: absolute; height: 20%; left: 0; right: 0; top: 80%; opacity: 1">
+                                    </span>
+                                </span>
+                                <button style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; margin: 0; padding: 0; border: none; font-size: 0; background: transparent; cursor: pointer">
+                                    Open Menu
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header-container">
+                        <a aria-current="page" class="logo-container" href="/">
+                            <img src="https://elestyle.jp/static/logo-3f39b6e2e07df48f297ea3167705931e.svg"
+                                 alt="logo" style="width: 160px">
+                        </a>
+                        <nav class="nav-pc">
+                            <ul class="nav-list">
+                                <li class="nav-link ">
+                                    <a href="/#service" target="_self" rel="noopener noreferrer">
+                                        サービス
+                                    </a>
+                                </li>
+                                <li class="nav-link ">
+                                    <a href="/#news" target="_self" rel="noopener noreferrer">
+                                        お知らせ
+                                    </a>
+                                </li>
+                                <li class="nav-link ">
+                                    <a href="/#media" target="_self" rel="noopener noreferrer">
+                                        メディア掲載実績
+                                    </a>
+                                </li>
+                                <li class="nav-link ">
+                                    <a href="/#about" target="_self" rel="noopener noreferrer">
+                                        会社概要
+                                    </a>
+                                </li>
+                                <li class="nav-link ">
+                                    <a href="/#contact" target="_self" rel="noopener noreferrer">
+                                        お問い合わせ
+                                    </a>
+                                </li>
+                                <li class="nav-link ">
+                                    <a href="https://www.wantedly.com/companies/elestyle" target="_blank"
+                                       rel="noopener noreferrer">
+                                        採用情報
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </header>
+                <main>
+                    <div class="team-board-container">
+                        <div class="team-vision">
+                            <h2 class="slogan">
+                                <span class="text-split-animate">
+                                    <span class="slid-char-container  show-animate">
+                                        <span class="slid-char " style="transition-delay: 0s">
+                                            Y
+                                        </span>
+                                    </span>
+                                    <span class="slid-char-container  show-animate">
+                                        <span class="slid-char " style="transition-delay: 0.025s">
+                                            O
+                                        </span>
+                                    </span>
+                                    <span class="slid-char-container  show-animate">
+                                        <span class="slid-char " style="transition-delay: 0.05s">
+                                            U
+                                        </span>
+                                    </span>
+                                    <span class="slid-char-container  show-animate">
+                                        <span class="slid-char " style="transition-delay: 0.07500000000000001s">
+                                            R
+                                        </span>
+                                    </span>
+                                </span>
+                                <span class="text-split-animate">
+                                    <span class="slid-char-container  show-animate">
+                                        <span class="slid-char " style="transition-delay: 0s">
+                                            U
+                                        </span>
+                                    </span>
+                                    <span class="slid-char-container  show-animate">
+                                        <span class="slid-char " style="transition-delay: 0.025s">
+                                            L
+                                        </span>
+                                    </span>
+                                    <span class="slid-char-container  show-animate">
+                                        <span class="slid-char " style="transition-delay: 0.05s">
+                                            T
+                                        </span>
+                                    </span>
+                                    <span class="slid-char-container  show-animate">
+                                        <span class="slid-char " style="transition-delay: 0.07500000000000001s">
+                                            I
+                                        </span>
+                                    </span>
+                                    <span class="slid-char-container  show-animate">
+                                        <span class="slid-char " style="transition-delay: 0.1s">
+                                            M
+                                        </span>
+                                    </span>
+                                    <span class="slid-char-container  show-animate">
+                                        <span class="slid-char " style="transition-delay: 0.125s">
+                                            A
+                                        </span>
+                                    </span>
+                                    <span class="slid-char-container  show-animate">
+                                        <span class="slid-char " style="transition-delay: 0.15000000000000002s">
+                                            T
+                                        </span>
+                                    </span>
+                                    <span class="slid-char-container  show-animate">
+                                        <span class="slid-char " style="transition-delay: 0.17500000000000002s">
+                                            E
+                                        </span>
+                                    </span>
+                                </span>
+                                <span class="emphasis-pc">
+                                    <span class="text-split-animate">
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0s">
+                                                C
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.025s">
+                                                A
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.05s">
+                                                S
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.07500000000000001s">
+                                                H
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.1s">
+                                                L
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.125s">
+                                                E
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.15000000000000002s">
+                                                S
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.17500000000000002s">
+                                                S
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char empty" style="transition-delay: 0.2s">
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.225s">
+                                                S
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.25s">
+                                                O
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.275s">
+                                                L
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.30000000000000004s">
+                                                U
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.325s">
+                                                T
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.35000000000000003s">
+                                                I
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.375s">
+                                                O
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.4s">
+                                                N
+                                            </span>
+                                        </span>
+                                    </span>
+                                </span>
+                                <span class="emphasis-mobile">
+                                    <span class="text-split-animate">
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0s">
+                                                C
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.025s">
+                                                A
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.05s">
+                                                S
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.07500000000000001s">
+                                                H
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.1s">
+                                                L
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.125s">
+                                                E
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.15000000000000002s">
+                                                S
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.17500000000000002s">
+                                                S
+                                            </span>
+                                        </span>
+                                    </span>
+                                    <span class="text-split-animate">
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0s">
+                                                S
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.025s">
+                                                O
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.05s">
+                                                L
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.07500000000000001s">
+                                                U
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.1s">
+                                                T
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.125s">
+                                                I
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.15000000000000002s">
+                                                O
+                                            </span>
+                                        </span>
+                                        <span class="slid-char-container  show-animate">
+                                            <span class="slid-char " style="transition-delay: 0.17500000000000002s">
+                                                N
+                                            </span>
+                                        </span>
+                                    </span>
+                                </span>
+                            </h2>
+                        </div>
+                    </div>
+                    <div id="service" class="service-container">
+                        <div class="section-title">
+                            <h3>
+                                <div style="display: block" class="text-fade-in fadeInUp">
+                                    <h1>
+                                        サービス
+                                    </h1>
+                                </div>
+                            </h3>
+                        </div>
+                        <div class="display-card elepay clearfix">
+                            <div class="display-card-main-content">
+                                <h3 class="display-card-title">
+                                    <img src="https://elestyle.jp/static/elepay-title-e50fbcb4b40c3a80c7aec7cdeb7dd8f2.svg"
+                                         alt="elepay">
+                                </h3>
+                                <p class="description">
+                                    Mobile Payment SaaS
+                                </p>
+                                <div class="additional">
+                                    異なるモバイル決済のAPIインタフェースを一本化し、短期間で簡単に導入できるマルチモバイル決済プラットフォームを提供しています。お客様のサービスにおける機会損失を減らし、ビジネスの成長を支えていきます。さらに日本のキャッシュレス社会を加速させます。
+                                </div>
+                                <a class="display-card-action" target="_blank" rel="noopener noreferrer"
+                                   href="https://elepay.io/">
+                                    サービスサイトを見る
+                                </a>
+                            </div>
+                            <div class="display-card-vision">
+                                <img src="https://elestyle.jp/display-card-picture/elepay-vision.png" alt="elepay">
+                            </div>
+                        </div>
+                        <div class="display-card oneqr clearfix">
+                            <div class="display-card-main-content">
+                                <h3 class="display-card-title">
+                                    <img src="https://elestyle.jp/static/oneqr-title-5b2f668d0ade735ae8c1df7e59b31e3f.svg"
+                                         alt="oneqr">
+                                </h3>
+                                <p class="description">
+                                    Mobile Application SaaS
+                                </p>
+                                <div class="additional">
+                                    長年培ってきたECサービスのノウハウを駆使し、お客様のビジネス課題に合わせてオフィス販売、駐車場、モバイルオーダー、自動販売機、デリバリー、ECサービスなど利用シーンに対応したモバイルアプリケーションSaaSを提供しています。
+                                </div>
+                                <a class="display-card-action" href="https://elepay.io/oneqr.html" rel="noopener noreferrer"
+                                   target="_blank">
+                                    サービスサイトを見る
+                                </a>
+                            </div>
+                            <div class="display-card-vision">
+                                <img src="https://elestyle.jp/display-card-picture/oneqr-vision.png" alt="oneqr">
+                            </div>
+                        </div>
+                        <div class="display-card consulting clearfix">
+                            <div class="display-card-main-content">
+                                <h3 class="display-card-title">
+                                    <img src="https://elestyle.jp/static/consulting-title-afff61b464f800283ead4d973b6e2c2e.svg"
+                                         alt="consulting">
+                                </h3>
+                                <p class="description">
+                                    Mobile Consulting
+                                </p>
+                                <div class="additional">
+                                    モバイルアプリやインターネットサービスの開発、運用、保守はもちろん、ビジネスにも深い知見をもつ経験豊富なチームがワンストップで支援します。
+                                </div>
+                                <a class="display-card-action" href="/#contact">
+                                    お問い合わせ
+                                </a>
+                            </div>
+                            <div class="display-card-vision">
+                                <img src="https://elestyle.jp/display-card-picture/consulting-vision.png" alt="consulting">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="news" class="news-container">
+                        <div class="section-title">
+                            <h3>
+                                <div style="display: block" class="text-fade-in fadeInUp">
+                                    <h1>
+                                        お知らせ
+                                    </h1>
+                                </div>
+                            </h3>
+                        </div>
+                        <ul class="news-section">
+                            <li class="news">
+                                <h4 class="news-title">
+                                    <a href="https://prtimes.jp/main/html/rd/p/000000011.000021921.html" target="_blank"
+                                       rel="noopener noreferrer">
+                                        マルチモバイル決済SaaS開発のELESTYLE、コカ・コーラボトラーズジャパンのオフィス向け飲料提供サービス「Coke mini」にモバイルアプリSaaS「OneQR」を提供
+                                    </a>
+                                </h4>
+                                <time class="news-date">
+                                    2019-12-09
+                                </time>
+                            </li>
+                            <li class="news">
+                                <h4 class="news-title">
+                                    <a href="https://prtimes.jp/main/html/rd/p/000000010.000021921.html" target="_blank"
+                                       rel="noopener noreferrer">
+                                        マルチモバイル決済SaaS開発のELESTYLE、国内最大級の駐輪場サービス「EcoStation21」にモバイルアプリSaaS「OneQR」を提供
+                                    </a>
+                                </h4>
+                                <time class="news-date">
+                                    2019-12-04
+                                </time>
+                            </li>
+                            <li class="news">
+                                <h4 class="news-title">
+                                    <a href="https://prtimes.jp/main/html/rd/p/000000006.000021921.html" target="_blank"
+                                       rel="noopener noreferrer">
+                                        ELESTYLEと共同印刷が事業提携。多彩な決済ニーズに対応したマルチモバイル決済プラットフォーム「elepay」を提供開始
+                                    </a>
+                                </h4>
+                                <time class="news-date">
+                                    2019-06-05
+                                </time>
+                            </li>
+                        </ul>
+                        <a href="https://prtimes.jp/main/html/searchrlp/company_id/21921" class="news-read-more"
+                           target="_blank" rel="noopener noreferrer">
+                            READ MORE
+                        </a>
+                    </div>
+                    <div id="client" style="display: none" class="client-container">
+                        <div class="section-title">
+                            <h3>
+                                <div style="display: block" class="text-fade-in fadeInUp">
+                                    <h1>
+                                        主な取引先
+                                    </h1>
+                                </div>
+                            </h3>
+                        </div>
+                        <div class="client-list">
+                            <img src="/client-picture/cocacola.png" style="height: 90px" alt="Coca Cola">
+                            <img src="/client-picture/tomowel.png" style="height: 25px" alt="TOMOWEL">
+                            <img src="/client-picture/eco-station21.png" style="height: 110px" alt="Eco Station21">
+                        </div>
+                    </div>
+                    <div id="media" class="media-container">
+                        <div class="section-title">
+                            <h3>
+                                <div style="display: block" class="text-fade-in fadeInUp">
+                                    <h1>
+                                        メディア掲載実績
+                                    </h1>
+                                </div>
+                            </h3>
+                        </div>
+                        <div class="media-list">
+                            <div>
+                                <img src="https://elestyle.jp/media/01.png" style="height: 21.6px" alt="media">
+                            </div>
+                            <div>
+                                <img src="https://elestyle.jp/media/02.png" style="height: 24.3px" alt="media">
+                            </div>
+                            <div>
+                                <img src="https://elestyle.jp/media/03.png" style="height: 55.35px" alt="media">
+                            </div>
+                            <div>
+                                <img src="https://elestyle.jp/media/04.png" style="height: 43.2px" alt="media">
+                            </div>
+                            <div>
+                                <img src="https://elestyle.jp/media/05.png" style="height: 43.2px" alt="media">
+                            </div>
+                            <div>
+                                <img src="https://elestyle.jp/media/06.png" style="height: 36.45px" alt="media">
+                            </div>
+                            <div>
+                                <img src="https://elestyle.jp/media/07.png" style="height: 81px" alt="media">
+                            </div>
+                            <div>
+                                <img src="https://elestyle.jp/media/08.png" style="height: 29.7px" alt="media">
+                            </div>
+                            <div>
+                                <img src="https://elestyle.jp/media/09.png" style="height: 29.7px" alt="media">
+                            </div>
+                            <div>
+                                <img src="https://elestyle.jp/media/10.png" style="height: 39.15px" alt="media">
+                            </div>
+                            <div>
+                                <img src="https://elestyle.jp/media/11.png" style="height: 17.55px" alt="media">
+                            </div>
+                            <div>
+                                <img src="https://elestyle.jp/media/12.png" style="height: 62.1px" alt="media">
+                            </div>
+                            <div>
+                                <img src="https://elestyle.jp/media/13.png" style="height: 29.7px" alt="media">
+                            </div>
+                            <div>
+                                <img src="https://elestyle.jp/media/14.png" style="height: 58.050000000000004px"
+                                     alt="media">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="about" class="about-container">
+                        <div class="section-title">
+                            <h3>
+                                <div style="display: block" class="text-fade-in fadeInUp">
+                                    <h1>
+                                        会社概要
+                                    </h1>
+                                </div>
+                            </h3>
+                        </div>
+                        <table class="company-info">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        会社名
+                                    </td>
+                                    <td>
+                                        ：
+                                    </td>
+                                    <td>
+                                        ELESTYLE株式会社
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        英語
+                                    </td>
+                                    <td>
+                                        ：
+                                    </td>
+                                    <td>
+                                        ELESTYLE,Inc.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        設立
+                                    </td>
+                                    <td>
+                                        ：
+                                    </td>
+                                    <td>
+                                        2014年6月
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        代表者
+                                    </td>
+                                    <td>
+                                        ：
+                                    </td>
+                                    <td>
+                                        盧迪
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        資本金
+                                    </td>
+                                    <td>
+                                        ：
+                                    </td>
+                                    <td>
+                                        9,460万円資本準備金含む
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        本社
+                                    </td>
+                                    <td>
+                                        ：
+                                    </td>
+                                    <td>
+                                        〒101-0031
+                                        <br>
+                                        東京都千代田区東神田2-10-9
+                                        <br>
+                                        THE PORTAL AKIHABARA 6F
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        電話
+                                    </td>
+                                    <td>
+                                        ：
+                                    </td>
+                                    <td>
+                                        (+81)03-6222-9557
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        F A X
+                                    </td>
+                                    <td>
+                                        ：
+                                    </td>
+                                    <td>
+                                        (+81)03-4496-4972
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Email
+                                    </td>
+                                    <td>
+                                        ：
+                                    </td>
+                                    <td>
+                                        info@@elestyle.jp
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="contact" class="contact-container">
+                        <div class="section-title">
+                            <h3>
+                                <div style="display: block" class="text-fade-in fadeInUp">
+                                    <h1>
+                                        お問い合わせ
+                                    </h1>
+                                </div>
+                            </h3>
+                        </div>
+                        <form class="contact-form">
+                            <span class="field input ">
+                                <span class="title required">
+                                    お名前
+                                </span>
+                                <input type="text" value="">
+                                <span class="error">
+                                </span>
+                            </span>
+                            <span class="field input ">
+                                <span class="title required">
+                                    Email
+                                </span>
+                                <input type="text" value="">
+                                <span class="error">
+                                </span>
+                            </span>
+                            <span class="field input ">
+                                <span class="title ">
+                                    件名
+                                </span>
+                                <input type="text" value="">
+                                <span class="error">
+                                </span>
+                            </span>
+                            <span class="field input ">
+                                <span class="title ">
+                                    お電話
+                                </span>
+                                <input type="text" value="">
+                                <span class="error">
+                                </span>
+                            </span>
+                            <span class="field textarea ">
+                                <span class="title required">
+                                    ご要件
+                                </span>
+                                <textarea style="resize: none">
+						</textarea>
+                                <span class="error">
+                                </span>
+                            </span>
+                            <div class="term-tip required">
+                                <span class="required-tip">
+                                    *
+                                </span>
+                                <input type="checkbox" name="term" id="termsCheck">
+                                <label for="termsCheck">
+                                    「
+                                    <a href="/privacy-agreement" target="_blank" rel="noopener noreferrer">
+                                        個人情報の取り扱いについて
+                                    </a>
+                                    」に同意する
+                                </label>
+                            </div>
+                            <button class="submit-button" type="submit" disabled="">
+                                お問い合わせ
+                            </button>
+                        </form>
+                    </div>
+                </main>
+                <footer class="footer-container">
+                    <div class="footer-wrapper">
+                        <div class="privacy">
+                            <a href="/privacy" target="_blank" rel="noopener noreferrer">
+                                個人情報保護方針
+                            </a>
+                            <a href="/privacy-agreement" target="_blank" rel="noopener noreferrer">
+                                個人情報の取り扱いについて
+                            </a>
+                        </div>
+                        <div class="socal-list">
+                            <div class="copyright">
+                                ©ELESTYLE,Inc.
+                            </div>
+                            <a href="https://www.facebook.com/elestyle.inc" target="_blank" rel="noopener noreferrer">
+                                <i class="iconfont iconfacebook">
+                                </i>
+                            </a>
+                            <a href="https://twitter.com/elestyle_inc" target="_blank" rel="noopener noreferrer">
+                                <i class="iconfont icontwitter">
+                                </i>
+                            </a>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="/component---src-pages-index-js-80586a4a415bebb2bb1d.js" async=""></script>
+    <script src="/styles-c0b615a9bc338a718499.js" async=""></script>
+    <script src="/app-03160222c0a994ad6c7c.js" async=""></script>
+    <script src="/commons-7a97432bfc45fd7b5642.js" async=""></script>
+    <script src="/webpack-runtime-27cc6c0f85f0bf11eb1b.js" async=""></script>
+</body>
+</html>

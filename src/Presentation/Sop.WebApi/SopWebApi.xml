@@ -10,26 +10,26 @@
             </summary>
             <param name="builder"></param>
         </member>
-        <member name="T:Sop.WebApi.ValuesController">
+        <member name="T:Sop.WebApi.Controllers.ValuesController">
             <summary>
             Simple REST API controller that shows Autofac injecting dependencies.
             </summary>
             <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
         </member>
-        <member name="M:Sop.WebApi.ValuesController.Get">
+        <member name="M:Sop.WebApi.Controllers.ValuesController.Get">
             <summary>
              GET api/values
             </summary>
             <returns>string  log</returns>
         </member>
-        <member name="M:Sop.WebApi.ValuesController.Get(System.Int32)">
+        <member name="M:Sop.WebApi.Controllers.ValuesController.Get(System.Int32)">
             <summary>
             GET api/values/5
             </summary>
             <param name="id">id</param>
             <returns>ds</returns>
         </member>
-        <member name="M:Sop.WebApi.ValuesController.Create(Sop.WebApi.Data.TodoItem)">
+        <member name="M:Sop.WebApi.Controllers.ValuesController.Create(Sop.WebApi.Data.TodoItem)">
              <summary>
              Creates a TodoItem.
              </summary>

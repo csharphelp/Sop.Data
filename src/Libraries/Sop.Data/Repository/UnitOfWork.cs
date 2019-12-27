@@ -4,11 +4,9 @@ using System.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Castle.Core.Logging;
 using Dapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using Remotion.Linq.Clauses;
 using Sop.Data.Dapper;
 
 namespace Sop.Data.Repository
@@ -29,10 +27,7 @@ namespace Sop.Data.Repository
         public UnitOfWork(DbContext context)
         {
             _context = context;
-        }
-
-
-
+        } 
         public int SaveChanges()
         {
             return _context.SaveChanges();
@@ -86,15 +81,18 @@ namespace Sop.Data.Repository
 
             int tempPageIndex = (pageIndex - 1) * pageSize;
             if (_context.Database.IsMySql())
-                query = $"{sql} LIMIT {tempPageIndex}, {pageSize}";
+                query = $"{sql} LIMIT {tempPageIndex},{pageSize}";
             if (_context.Database.IsSqlServer())
             { 
                 query = $" select top {pageSize} * from ( select row_number() over(order by {orderBySql}) as row_number,* from ( {sql}) as u) temp_row where row_number>{tempPageIndex}  ";
             }
+            #region SQ
             // SELECT* FROM(select row_number() over(order by PersonnelId) as row_number,* from PE_Model_Personnel) AS u   WHERE row_number BETWEEN 10 AND 1000 
-            // SELECT ROW_NUMBER() OVER(ORDER BY[PersonnelId] DESC) AS num,* FROM PE_Model_Personnel  ORDER BY num DESC OFFSET 10 ROWS FETCH NEXT 1000 ROWS ONLY
+            // SELECT ROW_NUMBER() OVER(ORDER BY[PersonnelId] DESC) AS num,* FROM PE_Model_Personnel  ORDER BY num DESC 
+            //OFFSET 10 ROWS FETCH NEXT 1000 ROWS ONLY
             // select top 10 * from ( select row_number() over(order by PersonnelId) as row_number,* from ( ) as u) temp_row where row_number>(22-1)*10;
 
+            #endregion
 
             var items = await connection.QueryAsync<TEntity>(query, param);
             var pagedList = new PageList<TEntity>(items.AsQueryable(), pageIndex - 1, pageSize);

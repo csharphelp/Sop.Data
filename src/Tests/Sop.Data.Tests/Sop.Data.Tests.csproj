@@ -11,8 +11,7 @@
     <PackageReference Include="xunit" Version="2.4.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
     <PackageReference Include="coverlet.collector" Version="1.0.1" />
-  </ItemGroup>
-
+  </ItemGroup> 
   <ItemGroup>
     <ProjectReference Include="..\..\Libraries\Sop.Data\Sop.Data.csproj" />
   </ItemGroup>

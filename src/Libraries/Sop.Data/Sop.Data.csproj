@@ -33,21 +33,23 @@
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
   </ItemGroup>
   <ItemGroup>
+    <Compile Remove="Dapper\Helper\**" />
+    <EmbeddedResource Remove="Dapper\Helper\**" />
+    <None Remove="Dapper\Helper\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Remove="CronExpression.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.4" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="5.0.1" />
     <PackageReference Include="Castle.Core" Version="4.4.0" />
     <PackageReference Include="Dapper" Version="1.60.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="3.1.0" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.2.0" /> 
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Dapper\Helper\" />
   </ItemGroup> 
 
 </Project>

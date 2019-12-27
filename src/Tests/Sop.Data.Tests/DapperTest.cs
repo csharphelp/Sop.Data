@@ -14,6 +14,7 @@ namespace Sop.Data.Tests
 {
     public class DapperTest
     {
+        #region DapperTest
         private readonly IUnitOfWork _unitOfWork;
         private readonly ISchoolRepository _schoolRepository;
 
@@ -28,7 +29,8 @@ namespace Sop.Data.Tests
             var sp = services.BuildServiceProvider();
             _unitOfWork = sp.GetRequiredService<IUnitOfWork>();
             _schoolRepository = sp.GetRequiredService<ISchoolRepository>();
-        }
+        } 
+        #endregion
 
         [Fact]
         public async Task QueryAsync()
@@ -253,7 +255,7 @@ namespace Sop.Data.Tests
 
                     tran.Commit();
                 }
-                catch (Exception exception)
+                catch (Exception)
                 {
                     tran.Rollback();
 

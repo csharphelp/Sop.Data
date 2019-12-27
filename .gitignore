@@ -173,3 +173,4 @@ glob:*.user
 src/packages/*
 /src/Libraries/Sop.Data/bin
 /src/Libraries/Sop.Data/obj
+/example/packages

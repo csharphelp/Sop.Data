@@ -2,6 +2,9 @@
 
 namespace Sop.Data.Mapping
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial interface IMappingConfiguration
     {
         /// <summary>

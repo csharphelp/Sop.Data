@@ -8,19 +8,15 @@ using Sop.Data.Mapping;
 namespace Sop.Data.Tests.Entities.Map
 {
    
-    public partial class StudentMap : SopEntityTypeConfiguration<Student>
+    public partial class StudentMap : BaseMapEntityTypeConfiguration<Student>
     {
         #region Methods
 
-        /// <summary>
-        /// Configures the entity
-        /// </summary>
-        /// <param name="builder">The builder to be used to configure the entity</param>
         public override void Configure(EntityTypeBuilder<Student> builder)
         {
             builder.ToTable(nameof(Student));
             //builder.ToTable("student");
-            builder.HasKey(n => n.Id); 
+            builder.HasKey(n => n.Id);
             base.Configure(builder);
         }
 
