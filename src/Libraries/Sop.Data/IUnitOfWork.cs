@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
+﻿
+using Microsoft.EntityFrameworkCore.Storage;
 using Sop.Data.Repository;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace Sop.Data
         /// <returns>A <see cref="Task{TResult}"/> that represents the asynchronous save operation. The task result contains the number of state entities written to database.</returns>
         Task<int> SaveChangesAsync();
 
-        #region command sql
+#region command sql
 
         /// <summary>
         /// QueryAsync
@@ -58,16 +59,16 @@ namespace Sop.Data
         /// <returns></returns>
         Task<IPageList<TEntity>> QueryPageListAsync<TEntity>(int pageIndex, int pageSize, string pageSql, object pageSqlArgs = null)
             where TEntity : class;
-        #endregion
+#endregion
 
-        #region Transaction
+#region Transaction
         /// <summary>
         /// BeginTransaction
         /// </summary>
         /// <returns></returns>
         IDbContextTransaction BeginTransaction();
 
-        #endregion
+#endregion
         /// <summary>
         /// get connection
         /// </summary>

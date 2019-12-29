@@ -10,6 +10,7 @@ namespace Sop.Data
     /// This interface is implemented by all repositories to ensure implementation of fixed methods.
     /// </summary>
     /// <typeparam name="TEntity">Main Entity type this repository works on</typeparam>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("样式", "IDE1006:命名样式", Justification = "<挂起>")]
     public interface IRepository<TEntity> where TEntity : class
     {
 

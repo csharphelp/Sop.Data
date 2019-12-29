@@ -3,8 +3,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Sop.Data;
 
-namespace Sop.Data.Repository
+namespace System
 {
     /// <summary>
     /// 该类包含两个ToPagedList扩展方法，

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Sop.Data;
 
-namespace Sop.Data.Repository
+namespace System
 {
     /// <summary>
     /// Paged list
