@@ -28,13 +28,16 @@ namespace Sop.Data.Tests
 
         public AfEfRepositoryTest()
         {
-            var builder = new Autofac.ContainerBuilder();
+            var builder = new ContainerBuilder();
 
             builder.AddSopData(opt =>
             {
                 opt.UseMySql("server =127.0.0.1;database=soptestdb;uid=root;password=123456;");
             });
             var container = builder.Build();
+
+
+
             _unitOfWork = container.Resolve<IUnitOfWork>();
             _schoolRepository = container.Resolve<ISchoolRepository>();
             _studentRepository = container.Resolve<IStudentRepository>();

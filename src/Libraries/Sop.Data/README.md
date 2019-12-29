@@ -1,74 +1,69 @@
 ﻿#### 背景
-17年开始，公司开始向DotNet Core转型，面对ORM工具的选型，当时围绕Dapper和EF发生了激烈的讨论。项目团队更加关注快速交付，他们主张使用EF这种能快速开发的ORM工具;而在线业务团队对性能有更高的要求，他们更希望使用能直接执行Sql语句的Dapper这样可控性更高。而对于架构团队来说，满足开发团队的各种需求，提高他们的开发效率是最核心的价值所在，所以当时决定做一个混合型的既支持EF又支持dapper的数据仓储。
+面对ORM工具的选型，用过[PetaPoco](https://github.com/CollaboratingPlatypus/PetaPoco)、
+[SqlSugar](https://github.com/sunkaixuan/SqlSugar)、[nhibernate-core](https://github.com/nhibernate/nhibernate-core)、[EntityFrameworkCore](https://github.com/aspnet/EntityFrameworkCore)、 ORM选择是一个非常纠结切难以下手的问题。当时围绕Dapper、EF、Nhibernate发生了激烈的讨论。 选择EF因为微软的支持，同时选择Dapper代替ADO.NET 操作数据库，而且Dapper比PetaPoco、SqlSugar好在使用的人多且环境多，出现的问题和支持可以得到很好的解决。
 
 #### 为什么选择EF+Dapper
 目前来说EF和Dapper是.NET平台最主流的ORM工具，团队成员的接受程度很高，学习成本最低，因为主主流，所以相关的资料非常齐全，各种坑也最少。
 
 #### 介绍
-1. 它不是一个ORM工具，它不做任何关于数据底层的操作
-2. 它是一个简易封装的数据库仓储和工作单元模型
-3. 能帮助你快速的构建项目的数据访问层
-4. 经过了2年多时间，10个项目组，大小近100多个线上项目的考验
-5. 支持EF和Dapper，可以在项目中随意切换使用
-6. 支持工作单元模式，也支持事务
-7. 支持Mysql和Mssql
-8. 支持同步和异步操作，推荐使用异步
-> PS: 简单操作使用EF，复杂sql操作使用Dapper是快速开发的秘诀。
+1. 支持工作单元模式，也支持事务，也支持数据库仓储和工作单元模型 
+2. 能帮助你快速的构建项目的数据访问层
+3. 支持EF和Dapper  ,简单操作使用EF，复杂sql操作使用Dapper
+4. 支持Mysql和Mssql
+5. 支持同步和异步操作，推荐使用异步
+PS：参考其他开源项目，切使用MIT协议的项目
 
 #### 使用方法
 引入nuget
 ```
-<PackageReference Include="Leo.Chimp" Version="2.1.2" />
+<PackageReference Include="Sop.Data" Version="1.0.0" />
 ```
 创建实体对象，继承IEntity
 
 ```
-public class School : IEntity
-{
-    public Guid Id { get; set; }
-    public string Name { get; set; }
-}
+    public class School : IEntity
+    {
+        public int Id { get; set; }
+        public string SchoolId { get; set; }
+        public string Name { get; set; }
+    }
 ```
 创建仓储接口和实现类，分别继承IRepository和EfCoreRepository
 ```
-public interface ISchoolRepository : IRepository<School>
-{
-}
-public class SchoolRepository: EfCoreRepository<School>,ISchoolRepository
-{
-    public SchoolRepository(DbContext context) : base(context)
+    public class SchoolRepository: EfCoreRepository<School>,ISchoolRepository
     {
+        public SchoolRepository(DbContext context) : base(context)
+        {
+        }
     }
-}
-```
-创建上下文，继承BaseDbContext，如果你不需要操作上下文可以不用做这一步
-```
-public class ChimpDbContext : BaseDbContext
-{
-    public ChimpDbContext(DbContextOptions options) : base(options)
+
+    public interface ISchoolRepository : IRepository<School>
     {
+
     }
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        base.OnModelCreating(modelBuilder);
-        //your code
-    }
-}
 ```
+ 
 注入服务
 ```
-services.AddChimp<ChimpDbContext>(
-                opt =>
-                opt.UseSqlServer("Server=10.0.0.99;Database=chimp;Uid=sa;Pwd=Fuluerp123")
-);
+    private readonly IUnitOfWork _unitOfWork;
+    private readonly ISchoolRepository _schoolRepository; 
+    /// <summary>
+    /// 
+    /// </summary>
+    public MsEfDbRepositoryTest()
+    {
+        var services = new ServiceCollection();
+        services.AddSopData<EfDbBaseDbContext>(opt =>
+        {
+            opt.UseMySql("server =127.0.0.1;database=soptestdb;uid=root;password=123456;");
+        });
+        var sp = services.BuildServiceProvider();
+        _unitOfWork = sp.GetRequiredService<IUnitOfWork>();
+        _schoolRepository = sp.GetRequiredService<ISchoolRepository>(); 
+            
+    }
 ```
-如果你没有创建上下文
-```
-services.AddChimp(
-                opt =>
-                opt.UseSqlServer("Server=10.0.0.99;Database=chimp;Uid=sa;Pwd=Fuluerp123")
-);
-```
+ 
 在Controller中使用
 ```
 public class ValuesController : ControllerBase
@@ -205,9 +200,6 @@ using (var tran = _unitOfWork.BeginTransaction())
 //通过GetConnection可以使用更多dapper扩展的方法
 _unitOfWork.GetConnection().QueryAsync("select * from school");
 ```
-#### 写在最后
-Chimp核心是基于EF和Dapper的，所以EF和Dapper一切功能都可以使用。比如导航属性，字段映射等等。这个库是线上项目核心依赖，会长期更新维护，希望大家能提出更好的意见。
-
-#### 项目地址
-数据库脚本在根目录的sqlscript文件夹里面  
-[github地址](https://github.com/longxianghui/chimp.git)
+#### 协议
+MIT
+ 

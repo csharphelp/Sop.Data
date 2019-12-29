@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sop.Data.Tests", "..\src\Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sop.Data", "..\src\Libraries\Sop.Data\Sop.Data.csproj", "{E2E33456-A67A-433B-A693-0EB8E6CA9D90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetFrameworkExample", "AspNetFrameworkExample\AspNetFrameworkExample.csproj", "{D160C9C5-3C75-4E17-9BE6-8AE69C0B925B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreExample", "AspNetCoreExample\AspNetCoreExample.csproj", "{D670B587-71EB-4D25-9C0D-EB4AB8E647AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,10 +27,10 @@ Global
 		{E2E33456-A67A-433B-A693-0EB8E6CA9D90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2E33456-A67A-433B-A693-0EB8E6CA9D90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2E33456-A67A-433B-A693-0EB8E6CA9D90}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D160C9C5-3C75-4E17-9BE6-8AE69C0B925B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D160C9C5-3C75-4E17-9BE6-8AE69C0B925B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D160C9C5-3C75-4E17-9BE6-8AE69C0B925B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D160C9C5-3C75-4E17-9BE6-8AE69C0B925B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D670B587-71EB-4D25-9C0D-EB4AB8E647AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D670B587-71EB-4D25-9C0D-EB4AB8E647AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D670B587-71EB-4D25-9C0D-EB4AB8E647AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D670B587-71EB-4D25-9C0D-EB4AB8E647AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
