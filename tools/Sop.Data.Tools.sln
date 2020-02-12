@@ -7,7 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sop.Data", "Sop.Data\Sop.Da
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sop.Data.Tests", "Sop.Data.Tests\Sop.Data.Tests.csproj", "{205056C8-CEAB-4DD9-AD4D-F2A25A8E0A4A}"
 EndProject
-
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeGen", "CodeGen", "{0ADE9D42-D89F-4CBA-A1EA-762C4C2CB5AA}"
+	ProjectSection(SolutionItems) = preProject
+		CodeGen\Database.tt = CodeGen\Database.tt
+		CodeGen\PetaPoco.Core.ttinclude = CodeGen\PetaPoco.Core.ttinclude
+		CodeGen\PetaPoco.Generator.ttinclude = CodeGen\PetaPoco.Generator.ttinclude
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
