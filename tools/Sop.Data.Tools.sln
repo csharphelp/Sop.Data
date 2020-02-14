@@ -3,16 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29519.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sop.Data", "Sop.Data\Sop.Data.csproj", "{CC42A35D-A4C1-4853-8494-D049833FB907}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sop.Data.Tests", "Sop.Data.Tests\Sop.Data.Tests.csproj", "{205056C8-CEAB-4DD9-AD4D-F2A25A8E0A4A}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeGen", "CodeGen", "{0ADE9D42-D89F-4CBA-A1EA-762C4C2CB5AA}"
-	ProjectSection(SolutionItems) = preProject
-		CodeGen\Database.tt = CodeGen\Database.tt
-		CodeGen\PetaPoco.Core.ttinclude = CodeGen\PetaPoco.Core.ttinclude
-		CodeGen\PetaPoco.Generator.ttinclude = CodeGen\PetaPoco.Generator.ttinclude
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{B6DC8C60-9A46-4813-A509-A1D7221C95B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,14 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CC42A35D-A4C1-4853-8494-D049833FB907}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC42A35D-A4C1-4853-8494-D049833FB907}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC42A35D-A4C1-4853-8494-D049833FB907}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC42A35D-A4C1-4853-8494-D049833FB907}.Release|Any CPU.Build.0 = Release|Any CPU
-		{205056C8-CEAB-4DD9-AD4D-F2A25A8E0A4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{205056C8-CEAB-4DD9-AD4D-F2A25A8E0A4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{205056C8-CEAB-4DD9-AD4D-F2A25A8E0A4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{205056C8-CEAB-4DD9-AD4D-F2A25A8E0A4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6DC8C60-9A46-4813-A509-A1D7221C95B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6DC8C60-9A46-4813-A509-A1D7221C95B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6DC8C60-9A46-4813-A509-A1D7221C95B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6DC8C60-9A46-4813-A509-A1D7221C95B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
