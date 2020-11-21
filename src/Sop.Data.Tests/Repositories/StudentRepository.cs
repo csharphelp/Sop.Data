@@ -8,11 +8,12 @@ namespace Sop.Data.Tests.Repositories
     {
         public StudentRepository(DbContext context) : base(context)
         {
+            
         }
     }
 
     public interface IStudentRepository : IRepository<Student>
     {
-
+        
     }
 }

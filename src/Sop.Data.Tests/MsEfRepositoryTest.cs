@@ -31,8 +31,10 @@ namespace Sop.Data.Tests
             {
                 opt.UseMySql(DBConfig.MYSQL);
             });
+
             var sp = services.BuildServiceProvider();
             _unitOfWork = sp.GetRequiredService<IUnitOfWork>();
+            
             _schoolRepository = sp.GetRequiredService<ISchoolRepository>();
             _studentRepository = sp.GetService<IStudentRepository>();
         }

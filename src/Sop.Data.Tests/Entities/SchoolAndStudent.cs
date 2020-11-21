@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Sop.Data.Tests.Entities
 {
-    public class SchoolAndStudent : IEntity
+    public class SchoolAndStudentDto 
     {
 
         public int Id { get; set; } 

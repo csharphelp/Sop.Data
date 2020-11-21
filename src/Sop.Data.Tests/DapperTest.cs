@@ -30,7 +30,7 @@ namespace Sop.Data.Tests
             var sp = services.BuildServiceProvider();
             _unitOfWork = sp.GetRequiredService<IUnitOfWork>();
             _schoolRepository = sp.GetRequiredService<ISchoolRepository>();
-        } 
+        }
         #endregion
 
         [Fact]
@@ -57,8 +57,8 @@ namespace Sop.Data.Tests
         [Fact]
         public async Task SchoolAndStudent_QueryPageListAsync()
         {
-            var students = await _unitOfWork.QueryPageListAsync<SchoolAndStudent>(1, 10, "SELECT school.SchoolId,school.Name as SchoolName,student.id,Body,DateCreated\r\nFROM school\r\nJOIN student\r\nON student.SchoolId=school.SchoolId", "order by id DESC");
-            Assert.True(students.Any());
+            var students = await _unitOfWork.QueryPageListAsync<SchoolAndStudentDto>(1, 10, "SELECT school.SchoolId,school.Name as SchoolName,student.id,Body,DateCreated\r\nFROM school\r\nJOIN student\r\nON student.SchoolId=school.SchoolId", "order by id DESC");
+            Assert.True(students.Total > 0);
         }
 
 
