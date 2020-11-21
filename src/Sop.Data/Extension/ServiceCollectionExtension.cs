@@ -5,8 +5,7 @@ using Sop.Data;
 using Sop.Data.Repository;
 using System;
 using System.Linq;
-
-
+ 
 namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
@@ -14,7 +13,7 @@ namespace Microsoft.Extensions.DependencyInjection
     /// </summary>
     public static class ServiceCollectionExtension
     {
-        #region ServiceCollectionExtension
+       
         /// <summary>
         /// 
         /// </summary>
@@ -78,12 +77,10 @@ namespace Microsoft.Extensions.DependencyInjection
             builder.Build(Autofac.Builder.ContainerBuildOptions.None);
             return builder;
         } 
-        #endregion
+        
+         
 
-
-
-
-        #region private
+        
         /// <summary>
         /// 
         /// </summary>
@@ -117,8 +114,6 @@ namespace Microsoft.Extensions.DependencyInjection
             }
             services.AddScoped(typeof(IRepository<>), typeof(EfCoreRepository<>));
         }
-
-
-        #endregion
+         
     }
 }

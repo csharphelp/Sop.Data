@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 namespace Sop.Data.Repository
-{
-
-
+{ 
     /// <summary>
     /// EfCoreRepository
     /// </summary>
@@ -16,22 +14,21 @@ namespace Sop.Data.Repository
     public class EfCoreRepository<TEntity> : IRepository<TEntity>
         where TEntity : class
     {
-        #region MyRegion
+        #region Ctor
         private readonly DbContext _context;
         private DbSet<TEntity> _entities;
         /// <summary>
-        /// 
+        /// EfCoreRepository
         /// </summary>
         /// <param name="context"></param>
-        public EfCoreRepository(DbContext context)
+        protected EfCoreRepository(DbContext context)
         {
             _context = context;
-        } 
+        }
         #endregion
-
-        #region GetById Gets
+         
         /// <summary>
-        /// 
+        /// GetById
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -43,7 +40,7 @@ namespace Sop.Data.Repository
             return Entities.Find(id);
         }
         /// <summary>
-        /// 
+        /// GetByIdAsync
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -57,20 +54,13 @@ namespace Sop.Data.Repository
         /// <summary>
         /// Gets a table
         /// </summary>
-        public virtual IQueryable<TEntity> Table => Entities;
-
+        public virtual IQueryable<TEntity> Table => Entities; 
         /// <summary>
-        /// Gets a table with "no tracking" enabled (EF feature) Use it only when you load record(s) only for read-only operations
+        ///TableNoTracking
         /// </summary>
-        public virtual IQueryable<TEntity> TableNoTracking => Entities.AsNoTracking();
-        #endregion
-
-
-
-
-        #region Insert
+        public virtual IQueryable<TEntity> TableNoTracking => Entities.AsNoTracking(); 
         /// <summary>
-        /// 
+        /// Insert
         /// </summary>
         /// <param name="entity"></param>
         public void Insert(TEntity entity)
@@ -81,7 +71,7 @@ namespace Sop.Data.Repository
             Entities.Add(entity);
         }
         /// <summary>
-        /// 
+        /// Insert
         /// </summary>
         /// <param name="entities"></param>
         public void Insert(IEnumerable<TEntity> entities)
@@ -92,7 +82,7 @@ namespace Sop.Data.Repository
             Entities.AddRange(entities);
         }
         /// <summary>
-        /// 
+        /// InsertAsync
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
@@ -104,7 +94,7 @@ namespace Sop.Data.Repository
             return Entities.AddAsync(entity);
         }
         /// <summary>
-        /// 
+        /// InsertAsync
         /// </summary>
         /// <param name="entities"></param>
         /// <returns></returns>
@@ -114,10 +104,10 @@ namespace Sop.Data.Repository
                 throw new ArgumentNullException("entities");
 
             return Entities.AddRangeAsync(entities);
-        } 
-        #endregion
+        }
+
         /// <summary>
-        /// 
+        /// Update
         /// </summary>
         /// <param name="entity"></param>
         public void Update(TEntity entity)
@@ -129,7 +119,7 @@ namespace Sop.Data.Repository
             _context.Update(entity);
         }
         /// <summary>
-        /// 
+        /// Update
         /// </summary>
         /// <param name="entities"></param>
         public void Update(IEnumerable<TEntity> entities)
@@ -141,7 +131,7 @@ namespace Sop.Data.Repository
 
         }
         /// <summary>
-        /// 
+        /// Update
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="properties"></param>
@@ -167,7 +157,10 @@ namespace Sop.Data.Repository
         {
             return str.Split(',')[0].Split('.')[1];
         }
-
+        /// <summary>
+        /// Delete
+        /// </summary>
+        /// <param name="entity"></param>
         public void Delete(TEntity entity)
         {
             if (entity == null)
@@ -176,7 +169,10 @@ namespace Sop.Data.Repository
             _context.Remove(entity);
         }
 
-
+        /// <summary>
+        /// Delete
+        /// </summary>
+        /// <param name="entities"></param>
         public void Delete(IEnumerable<TEntity> entities)
         {
             if (!entities.Any())
@@ -185,18 +181,17 @@ namespace Sop.Data.Repository
             _context.RemoveRange(entities);
 
         }
-
+        /// <summary>
+        /// Delete
+        /// </summary>
+        /// <param name="predicate"></param>
         public void Delete(Expression<Func<TEntity, bool>> predicate)
         {
             if (predicate == null)
                 throw new ArgumentNullException("predicate");
             _context.RemoveRange(Entities.Where(predicate));
         }
-
-        #region Properties
-
-
-
+          
         /// <summary>
         /// Gets an entity set
         /// </summary>
@@ -213,8 +208,7 @@ namespace Sop.Data.Repository
                 return;
             }
             _context.Attach(entity);
-        }
-        #endregion
+        } 
 
     }
 }

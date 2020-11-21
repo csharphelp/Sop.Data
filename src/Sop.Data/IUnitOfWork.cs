@@ -4,6 +4,7 @@ using Sop.Data.Repository;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Sop.Data
@@ -25,19 +26,19 @@ namespace Sop.Data
         /// <returns>A <see cref="Task{TResult}"/> that represents the asynchronous save operation. The task result contains the number of state entities written to database.</returns>
         Task<int> SaveChangesAsync();
 
-#region command sql
 
         /// <summary>
         /// QueryAsync
-        /// ag:await _unitOfWork.QueryAsync`Demo`("select id,name from school where id = @id", new { id = 1 });
+        /// eg:await _unitOfWork.QueryAsync`Demo`("select id,name from school where id = @id", new { id = 1 });
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
-        /// <param name="sql">sql语句</param>
-        /// <param name="param">参数</param>
+        /// <param name="sql"></param>
+        /// <param name="param"></param>
         /// <param name="trans"></param>
+        /// <param name="commandTimeout"></param>
+        /// <param name="commandType"></param>
         /// <returns></returns>
-        Task<IEnumerable<TEntity>> QueryAsync<TEntity>(string sql, object param = null, IDbContextTransaction trans = null) where TEntity : class;
-
+        Task<IEnumerable<TEntity>> QueryAsync<TEntity>(string sql, object param = null, IDbContextTransaction trans = null, int? commandTimeout = null, CommandType? commandType = null) where TEntity : class;
         /// <summary>
         /// ExecuteAsync
         /// ag:await _unitOfWork.ExecuteAsync("update school set name =@name where id =@id", new { name = "", id=1 });
@@ -49,26 +50,40 @@ namespace Sop.Data
         Task<int> ExecuteAsync(string sql, object param, IDbContextTransaction trans = null);
 
         /// <summary>
-        /// QueryPagedListAsync, complex sql, use "select * from (your sql) b"
+        ///  QueryPagedListAsync, complex sql, use "select * from (your sql) b"
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
-        /// <param name="pageSql"></param>
-        /// <param name="pageSqlArgs"></param>
+        /// <param name="sql"></param>
+        /// <param name="param"></param>
+        /// <param name="trans"></param>
         /// <returns></returns>
-        Task<IPageList<TEntity>> QueryPageListAsync<TEntity>(int pageIndex, int pageSize, string pageSql, object pageSqlArgs = null)
-            where TEntity : class;
-#endregion
+        Task<PageResult<TEntity>> QueryPageListAsync<TEntity>(int pageIndex, int pageSize, string sql,
+            object param = null, IDbContextTransaction trans = null) where TEntity : class;
 
-#region Transaction
+
         /// <summary>
         /// BeginTransaction
         /// </summary>
         /// <returns></returns>
         IDbContextTransaction BeginTransaction();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<IDbContextTransaction> BeginTransactionAsync(
+            CancellationToken cancellationToken = default(CancellationToken));
+        /// <summary>
+        /// 
+        /// </summary>
+        void CommitTransaction();
+        /// <summary>
+        /// 
+        /// </summary>
+        void RollbackTransaction();
 
-#endregion
         /// <summary>
         /// get connection
         /// </summary>

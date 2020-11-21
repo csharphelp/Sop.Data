@@ -16,13 +16,11 @@ namespace Sop.Data.Repository
         private OnModelCreatingType _onModelCreatingType = OnModelCreatingType.UseEntity;
         protected BaseDbContext()
         {
-
         }
 
         public BaseDbContext(DbContextOptions options) : base(options)
         {
         }
-
         protected void SetOnModelCreatingType(OnModelCreatingType onModelCreatingType = OnModelCreatingType.UseEntity)
         {
             _onModelCreatingType = onModelCreatingType;
@@ -76,55 +74,65 @@ namespace Sop.Data.Repository
         private List<Assembly> GetCurrentPathAssembly()
         {
             var list = new List<Assembly>();
-            switch (_onModelCreatingType)
+            if (_onModelCreatingType == OnModelCreatingType.UseEntity) 
             {
-                case OnModelCreatingType.UseEntity:
+                var dulls = DependencyContext.Default.CompileLibraries
+                    .Where(x => !x.Name.StartsWith("Microsoft") && !x.Name.StartsWith("System"))
+                    .ToList();
+                if (dulls.Any())
+                {
+                    foreach (var dll in dulls)
                     {
-                        var dulls = DependencyContext.Default.CompileLibraries
-                            .Where(x => !x.Name.StartsWith("Microsoft") && !x.Name.StartsWith("System"))
-                            .ToList();
-                        if (dulls.Any())
+                        if (dll.Type == "project")
                         {
-                            foreach (var dll in dulls)
+                            list.Add(Assembly.Load(dll.Name));
+                        }
+                    }
+                }
+
+                list.Add(Assembly.GetExecutingAssembly());
+
+            }
+            else if (_onModelCreatingType == OnModelCreatingType.UseEntityMap)
+            {
+                {
+                    var dulls = DependencyContext.Default.CompileLibraries
+                        .ToList();
+                    if (dulls.Any())
+                    {
+                        foreach (var dll in dulls)
+                        {
+                            if (dll.Type == "project")
                             {
-                                if (dll.Type == "project")
-                                {
-                                    list.Add(Assembly.Load(dll.Name));
-                                }
+                                list.Add(Assembly.Load(dll.Name));
                             }
                         }
-                        list.Add(Assembly.GetExecutingAssembly());
                     }
-                    break;
-                case OnModelCreatingType.UseEntityMap:
-                    {
-                        var dulls = DependencyContext.Default.CompileLibraries
-                            .ToList();
-                        if (dulls.Any())
-                        {
-                            foreach (var dll in dulls)
-                            {
-                                if (dll.Type == "project")
-                                {
-                                    list.Add(Assembly.Load(dll.Name));
-                                }
-                            }
-                        } 
-                        list.Add(Assembly.GetExecutingAssembly());
-                    }
-                    break;
-                default:
-                    break;
+
+                    list.Add(Assembly.GetExecutingAssembly());
+                }
             }
+            else
+            {
+            }
+
             return list;
         }
 
-       
-    }
 
+    }
+    /// <summary>
+    /// 属性使用
+    /// </summary>
     public enum OnModelCreatingType
     {
+        /// <summary>
+        /// 使用实体
+        /// </summary>
         UseEntity,
+        /// <summary>
+        /// 使用实体映射
+        /// </summary>
         UseEntityMap,
     }
 }

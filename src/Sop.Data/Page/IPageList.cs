@@ -33,6 +33,4 @@ namespace Sop.Data
         /// </summary>
         bool HasNextPage { get; }
     }
-
-
 }

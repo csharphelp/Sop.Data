@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using Dapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using Sop.Data.Dapper;
+using Sop.Data.Page;
 
 namespace Sop.Data.Repository
 {
@@ -16,7 +17,6 @@ namespace Sop.Data.Repository
     /// </summary>
     public class UnitOfWork : IUnitOfWork
     {
-        private static readonly Regex _rexOrderBy = new Regex(@"\s+ORDER\s+BY\s+([^\s]+(?:\s+ASC|\s+DESC)?)\s*$", RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
         private readonly DbContext _context;
         private bool _disposed = false;
 
@@ -27,85 +27,135 @@ namespace Sop.Data.Repository
         public UnitOfWork(DbContext context)
         {
             _context = context;
-        } 
+        }
+        /// <summary>
+        /// SaveChanges
+        /// </summary>
+        /// <returns></returns>
         public int SaveChanges()
         {
             return _context.SaveChanges();
         }
-
-
+        /// <summary>
+        /// SaveChangesAsync
+        /// </summary>
+        /// <returns></returns>
         public Task<int> SaveChangesAsync()
         {
             return _context.SaveChangesAsync();
         }
-
-
-        public Task<IEnumerable<TEntity>> QueryAsync<TEntity>(string sql, object param = null, IDbContextTransaction trans = null) where TEntity : class
+        /// <summary>
+        /// QueryAsync
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="sql"></param>
+        /// <param name="param"></param>
+        /// <param name="trans"></param>
+        /// <param name="commandTimeout"></param>
+        /// <param name="commandType"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<TEntity>> QueryAsync<TEntity>(string sql, object param = null, IDbContextTransaction trans = null, int? commandTimeout = null, CommandType? commandType = null) where TEntity : class
         {
             var conn = GetConnection();
-            return conn.QueryAsync<TEntity>(sql, param, trans?.GetDbTransaction());
-
+            return conn.QueryAsync<TEntity>(sql, param, trans?.GetDbTransaction(), commandTimeout, commandType);
         }
-
-
-        public async Task<int> ExecuteAsync(string sql, object param, IDbContextTransaction trans = null)
+        /// <summary>
+        /// ExecuteAsync
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="param"></param>
+        /// <param name="trans"></param>
+        /// <returns></returns>
+        public Task<int> ExecuteAsync(string sql, object param, IDbContextTransaction trans = null)
         {
             var conn = GetConnection();
-            return await conn.ExecuteAsync(sql, param, trans?.GetDbTransaction());
+            return conn.ExecuteAsync(sql, param, trans?.GetDbTransaction());
 
         }
-
-
-
-        public async Task<IPageList<TEntity>> QueryPageListAsync<TEntity>(int pageIndex, int pageSize, string sql, object param = null) where TEntity : class
+        /// <summary>
+        /// QueryPageListAsync
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="sql"></param>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public Task<PageResult<TEntity>> QueryPageListAsync<TEntity>(int pageIndex, int pageSize, string sql, object param = null, IDbContextTransaction trans = null) where TEntity : class
         {
-            if (pageIndex < 1)
-                pageIndex = 1;
             var connection = GetConnection();
-            var query = string.Empty;
+            pageSize = pageSize > 0 ? pageSize : 1;
+            pageIndex = pageIndex > 0 ? pageIndex : 1;
 
-            var tp = typeof(TEntity).GetProperties().Where(p => p.GetCustomAttributes(true).Any(attr => attr.GetType().Name == typeof(KeyAttribute).Name)).ToList();
-            var orderBySql = tp.Any() ?
-                tp.FirstOrDefault()?.Name
-                : typeof(TEntity).GetProperties().Where(p => p.Name.Equals("Id", StringComparison.OrdinalIgnoreCase))?.FirstOrDefault()?.Name;
-
-            var match = _rexOrderBy.Match(sql);
-            if (match.Success)
-            {
-                sql = sql.Substring(0, match.Index);
-                orderBySql = match.Groups[1].Value;
-            }
-
-
-
-
-            int tempPageIndex = (pageIndex - 1) * pageSize;
+            if (!PagingHelper.SplitSql(sql, out SqlParts parts))
+                throw new Exception("Unable to parse SQL statement for paged query");
+            long skip = (pageIndex - 1) * pageSize;
+            long take = pageSize;
+            var databaseType = DatabaseType.MySql;
             if (_context.Database.IsMySql())
-                query = $"{sql} LIMIT {tempPageIndex},{pageSize}";
-            if (_context.Database.IsSqlServer())
-            { 
-                query = $" select top {pageSize} * from ( select row_number() over(order by {orderBySql}) as row_number,* from ( {sql}) as u) temp_row where row_number>{tempPageIndex}  ";
+            {
+                databaseType = DatabaseType.MySql;
             }
-            #region SQ
-            // SELECT* FROM(select row_number() over(order by PersonnelId) as row_number,* from PE_Model_Personnel) AS u   WHERE row_number BETWEEN 10 AND 1000 
-            // SELECT ROW_NUMBER() OVER(ORDER BY[PersonnelId] DESC) AS num,* FROM PE_Model_Personnel  ORDER BY num DESC 
-            //OFFSET 10 ROWS FETCH NEXT 1000 ROWS ONLY
-            // select top 10 * from ( select row_number() over(order by PersonnelId) as row_number,* from ( ) as u) temp_row where row_number>(22-1)*10;
+            else if (_context.Database.IsSqlServer())
+            {
+                databaseType = DatabaseType.SqlServer2012;
+            }
 
-            #endregion
 
-            var items = await connection.QueryAsync<TEntity>(query, param);
-            var pagedList = new PageList<TEntity>(items.AsQueryable(), pageIndex - 1, pageSize);
-            return pagedList;
+            var sqlPage = PagingHelper.GetSqlPage(skip, take, parts, databaseType);
+            var sqlCount = parts.SqlCount;
+            var result = new PageResult<TEntity>
+            {
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                Total = connection.ExecuteScalar<long>(sqlCount)
+            };
+            if (result.Total == 0)
+            {
+                return Task.FromResult(result);
+            }
+            result.PageCount = result.Total / pageSize;
+
+            if ((result.Total % pageSize) != 0)
+                result.PageCount++;
+
+            result.Items = connection.Query<TEntity>(sqlPage, param, trans?.GetDbTransaction())?.ToList();
+            return Task.FromResult(result);
         }
 
-
+        /// <summary>
+        /// BeginTransaction
+        /// </summary>
+        /// <returns></returns>
         public IDbContextTransaction BeginTransaction()
         {
             return _context.Database.BeginTransaction();
         }
+        /// <summary>
+        /// BeginTransactionAsync
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return _context.Database.BeginTransactionAsync(cancellationToken);
+        }
+        /// <summary>
+        /// CommitTransaction
+        /// </summary>
+        /// <returns></returns>
+        public void CommitTransaction()
+        {
+            _context.Database.CommitTransaction();
 
-
+        }
+        /// <summary>
+        /// RollbackTransaction
+        /// </summary>
+        public void RollbackTransaction()
+        {
+            _context.Database.RollbackTransaction();
+        }
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -115,9 +165,11 @@ namespace Sop.Data.Repository
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
-
-        protected virtual void Dispose(bool disposing)
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        /// <param name="disposing"></param>
+        private void Dispose(bool disposing)
         {
             if (!_disposed)
             {
@@ -128,7 +180,10 @@ namespace Sop.Data.Repository
             }
             _disposed = true;
         }
-
+        /// <summary>
+        /// GetConnection
+        /// </summary>
+        /// <returns></returns>
         public IDbConnection GetConnection()
         {
             return _context.Database.GetDbConnection();

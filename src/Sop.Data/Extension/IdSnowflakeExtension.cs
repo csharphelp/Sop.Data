@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Threading;
 
-namespace Sop.Data.Container
+namespace Sop.Data.Extension
 {
     /// <summary>
     /// 动态生产有规律的ID Snowflake算法是Twitter的工程师为实现递增而不重复的ID实现的
     /// </summary>
-    public class IdSnowflake
+    public class IdSnowflakeExtension
     {
-        #region private
+        #region Ctor
         private static long _machineId;//机器ID
         private static long _datacenterId = 0L;//数据ID
         private static long _sequence = 0L;//计数从零开始
@@ -32,7 +32,7 @@ namespace Sop.Data.Container
         private static long _lastTimestamp = -1L;//最后时间戳
 
         private static readonly object _syncRoot = new object();//加锁对象
-        private static IdSnowflake _snowflake;
+        private static IdSnowflakeExtension _snowflake;
       
         /// <summary>
         /// 
@@ -47,7 +47,7 @@ namespace Sop.Data.Container
                 {
                     throw new Exception("机器码ID非法");
                 }
-                IdSnowflake._machineId = machineId;
+                IdSnowflakeExtension._machineId = machineId;
             }
             if (datacenterId >= 0)
             {
@@ -55,7 +55,7 @@ namespace Sop.Data.Container
                 {
                     throw new Exception("数据中心ID非法");
                 }
-                IdSnowflake._datacenterId = datacenterId;
+                IdSnowflakeExtension._datacenterId = datacenterId;
             }
         }
 
@@ -94,16 +94,16 @@ namespace Sop.Data.Container
         /// 
         /// </summary>
         /// <returns></returns>
-        public static IdSnowflake Instance()
+        public static IdSnowflakeExtension Instance()
         {
             if (_snowflake == null)
-                _snowflake = new IdSnowflake();
+                _snowflake = new IdSnowflakeExtension();
             return _snowflake;
         }
         /// <summary>
         /// 
         /// </summary>
-        public IdSnowflake()
+        public IdSnowflakeExtension()
         {
             Snowflakes(0L, -1);
         }
@@ -111,7 +111,7 @@ namespace Sop.Data.Container
         /// 
         /// </summary>
         /// <param name="machineId"></param>
-        public IdSnowflake(long machineId)
+        public IdSnowflakeExtension(long machineId)
         {
             Snowflakes(machineId, -1);
         }
@@ -120,7 +120,7 @@ namespace Sop.Data.Container
         /// </summary>
         /// <param name="machineId"></param>
         /// <param name="datacenterId"></param>
-        public IdSnowflake(long machineId, long datacenterId)
+        public IdSnowflakeExtension(long machineId, long datacenterId)
         {
             Snowflakes(machineId, datacenterId);
         }
@@ -133,13 +133,13 @@ namespace Sop.Data.Container
             lock (_syncRoot)
             {
                 var timestamp = GetTimestamp();
-                if (IdSnowflake._lastTimestamp == timestamp)
+                if (IdSnowflakeExtension._lastTimestamp == timestamp)
                 { //同一微妙中生成ID
                     _sequence = (_sequence + 1) & _sequenceMask; //用&运算计算该微秒内产生的计数是否已经到达上限
                     if (_sequence == 0)
                     {
                         //一微妙内产生的ID计数已达上限，等待下一微妙
-                        timestamp = GetNextTimestamp(IdSnowflake._lastTimestamp);
+                        timestamp = GetNextTimestamp(IdSnowflakeExtension._lastTimestamp);
                     }
                 }
                 else
@@ -151,7 +151,7 @@ namespace Sop.Data.Container
                 {
                     throw new Exception("时间戳比上一次生成ID时时间戳还小，故异常");
                 }
-                IdSnowflake._lastTimestamp = timestamp; //把当前时间戳保存为最后生成ID的时间戳
+                IdSnowflakeExtension._lastTimestamp = timestamp; //把当前时间戳保存为最后生成ID的时间戳
                 var Id = ((timestamp - twepoch) << (int)_timestampLeftShift)
                          | (_datacenterId << (int)_datacenterIdShift)
                          | (_machineId << (int)_machineIdShift)
