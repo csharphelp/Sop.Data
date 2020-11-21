@@ -8,10 +8,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\Libraries\Sop.Data\Sop.Data.csproj" />
+    <PackageReference Include="Sop.Data" Version="1.0.0.1" />
   </ItemGroup>
 
 </Project>

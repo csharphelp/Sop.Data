@@ -29,7 +29,8 @@ namespace AspNetCoreExample
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSopData(opt =>
             {
-                opt.UseMySql("server =127.0.0.1;database=soptestdb;uid=root;password=123456;");
+                //opt.UseMySql("server =.;database=soptestdb;uid=root;password=123456;");
+                opt.UseSqlServer("server =.;database=soptestdb;uid=sa;password=123456;");
             });
         }
 
